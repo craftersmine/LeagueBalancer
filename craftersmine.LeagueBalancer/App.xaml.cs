@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -26,6 +26,8 @@ namespace craftersmine.LeagueBalancer
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+
             ClientSettings = RiotApiClientSettingsBuilder
                 .CreateSettingsBuilder("RGAPI-API-KEY-GOES-HERE")
                 .UseDefaultDataRegion(RiotRegion.Europe).UseExperimentalLeaguesApi().Build();
@@ -37,6 +39,13 @@ namespace craftersmine.LeagueBalancer
             CommunityDragonClient = new CommunityDragon(VersionAlias.Latest, LeagueLocales.English);
 
             base.OnStartup(e);
+        }
+
+        private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            CrashHandlerWindow crashHandler = new CrashHandlerWindow((Exception)e.ExceptionObject);
+            crashHandler.ShowDialog();
+            Environment.Exit(((Exception)e.ExceptionObject).HResult);
         }
     }
 }

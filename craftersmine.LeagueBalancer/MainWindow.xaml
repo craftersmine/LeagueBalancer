@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:craftersmine.LeagueBalancer"
         xmlns:leagueuicontrols="clr-namespace:craftersmine.Ui.League.Controls;assembly=craftersmine.Ui.League"
-        mc:Ignorable="d"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
         Title="League Closed-game Team Balancer and Champion Randomizer" Height="650" Width="1115" Style="{StaticResource LeagueWindowStyle}" MinHeight="650" MinWidth="1115" MaxWidth="1115" MaxHeight="650"
         ResizeMode="CanMinimize">
     <Grid>
