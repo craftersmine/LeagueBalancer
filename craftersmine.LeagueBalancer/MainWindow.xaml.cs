@@ -102,9 +102,20 @@ namespace craftersmine.LeagueBalancer
                 {
                     if (e is RiotApiException rae)
                     {
-                        if (rae.ResponseCode == HttpResponseCode.NotFound)
-                            MessageBox.Show("Unable to player \"" + summonerName + "\" on " +
-                                            (SelectedRegion.SelectedItem as LeagueRegion)!.RegionName + " server! Check if username is correct and selected right server.", "Unable to find player!", MessageBoxButton.OK, MessageBoxImage.Information);
+                        switch (rae.ResponseCode)
+                        {
+                            case HttpResponseCode.NotFound:
+                                MessageBox.Show("Unable to player \"" + summonerName + "\" on " +
+                                                (SelectedRegion.SelectedItem as LeagueRegion)!.RegionName + " server! Check if username is correct and selected right server.", "Unable to find player!", MessageBoxButton.OK, MessageBoxImage.Information);
+                                break;
+                            case HttpResponseCode.Forbidden:
+                            case HttpResponseCode.Unauthorized:
+                                MessageBox.Show("Unable to access Riot Games API due to issue with Application API key! Contact app developer about this error!", "Expired or broken API key!", MessageBoxButton.OK, MessageBoxImage.Error);
+                                break;
+                            case HttpResponseCode.RateLimitExceeded:
+                                MessageBox.Show("Unable to access Riot Games API due to being rate-limited! Try again after " + App.SummonerApiClient.RetryAfter?.ToString("g"), "Rate-limited!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                break;
+                        }
                     }
                 }
             }
@@ -256,17 +267,37 @@ namespace craftersmine.LeagueBalancer
             Summoner? summoner = SummonersListBox.SelectedItem as Summoner;
             if (summoner is not null)
             {
-                CopyChampionsToClipboard.IsEnabled = false;
-                RandomizedInfoSpinner.Visibility = Visibility.Visible;
-                SelectPlayerTip.Visibility = Visibility.Hidden;
-                IsEnabled = false;
-                LeagueChampion[] champions = await Balancer.GetChampionList(summoner, (int)AvailablePoolSlider.Value, 100);
-                Champions[summoner] = champions;
-                SelectedSummonerChampions.ItemsSource = Champions[summoner];
-                SummonersListBox.SelectedItem = summoner;
-                RandomizedInfoSpinner.Visibility = Visibility.Hidden;
-                CopyChampionsToClipboard.IsEnabled = true;
-                IsEnabled = true;
+                try
+                {
+                    
+                    CopyChampionsToClipboard.IsEnabled = false;
+                    RandomizedInfoSpinner.Visibility = Visibility.Visible;
+                    SelectPlayerTip.Visibility = Visibility.Hidden;
+                    IsEnabled = false;
+                    LeagueChampion[] champions = await Balancer.GetChampionList(summoner, (int)AvailablePoolSlider.Value, 100);
+                    Champions[summoner] = champions;
+                    SelectedSummonerChampions.ItemsSource = Champions[summoner];
+                    SummonersListBox.SelectedItem = summoner;
+                    RandomizedInfoSpinner.Visibility = Visibility.Hidden;
+                    CopyChampionsToClipboard.IsEnabled = true;
+                    IsEnabled = true;
+                }
+                catch (Exception ex)
+                {
+                    if (ex is RiotApiException rae)
+                    {
+                        switch (rae.ResponseCode)
+                        {
+                            case HttpResponseCode.Forbidden:
+                            case HttpResponseCode.Unauthorized:
+                                MessageBox.Show("Unable to access Riot Games API due to issue with Application API key! Contact app developer about this error!", "Expired or broken API key!", MessageBoxButton.OK, MessageBoxImage.Error);
+                                break;
+                            case HttpResponseCode.RateLimitExceeded:
+                                MessageBox.Show("Unable to access Riot Games API due to being rate-limited! Try again after " + App.SummonerApiClient.RetryAfter?.ToString("g"), "Rate-limited!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                break;
+                        }
+                    }
+                }
             }
         }
 
