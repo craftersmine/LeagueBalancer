@@ -9,8 +9,8 @@ League of Legends closed-game balancer and champion randomizer
 ![GitHub Repo stars](https://img.shields.io/github/stars/craftersmine/LeagueBalancer)
 ![Maintenance](https://img.shields.io/maintenance/yes/2023)
 
-Controls preview:
-![Controls Preview](https://raw.githubusercontent.com/craftersmine/LeagueBalancer/master/.github/ControlsPreview.png)
+Application preview:
+![Controls Preview](https://raw.githubusercontent.com/craftersmine/LeagueBalancer/master/.github/ApplicationPreview.png)
 
 ## Installation:
 * Download latest application archive [here](https://github.com/craftersmine/LeagueBalancer/releases)
