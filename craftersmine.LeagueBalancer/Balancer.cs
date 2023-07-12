@@ -1,0 +1,110 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using System.Threading.Tasks;
+
+using craftersmine.League.CommunityDragon;
+using craftersmine.Riot.Api.Common;
+using craftersmine.Riot.Api.League.Mastery;
+using craftersmine.Riot.Api.League.Matches;
+
+namespace craftersmine.LeagueBalancer
+{
+    public class Balancer
+    {
+        public static Dictionary<LeagueTeamType, LeagueTeam> BalanceTeams(Summoner[] summoners)
+        {
+            List<Summoner> blueTeam = new List<Summoner>();
+            List<Summoner> redTeam = new List<Summoner>();
+
+            int averageLp = (int)summoners.Average(s => s.LeaguePointsAmount);
+            int blueTeamLp = 0;
+            int redTeamLp = 0;
+
+            List<Summoner> orderedSummoners = summoners.OrderBy(s => s.LeaguePointsAmount).ToList();
+
+            while (orderedSummoners.Any())
+            {
+                Summoner summoner = orderedSummoners.MaxBy(s => s.LeaguePointsAmount)!;
+
+                if (blueTeamLp < redTeamLp)
+                {
+                    blueTeam.Add(summoner);
+                    orderedSummoners.Remove(summoner);
+                    blueTeamLp += summoner.LeaguePointsAmount;
+                }
+                else
+                {
+                    redTeam.Add(summoner);
+                    orderedSummoners.Remove(summoner);
+                    redTeamLp += summoner.LeaguePointsAmount;
+                }
+            }
+
+
+            Dictionary<LeagueTeamType, LeagueTeam> teams = new Dictionary<LeagueTeamType, LeagueTeam>
+            {
+                { LeagueTeamType.Blue, new LeagueTeam(blueTeam.ToArray()) },
+                { LeagueTeamType.Red, new LeagueTeam(redTeam.ToArray()) }
+            };
+            return teams;
+        }
+
+        public static async Task<LeagueChampion[]> GetChampionList(Summoner summoner, int amount, int gamesToGet)
+        {
+            if (AppCache.Instance.Champions is null || !AppCache.Instance.Champions.Any())
+                AppCache.Instance.Champions = await App.CommunityDragonClient.GetChampionsAsync();
+
+            LeagueChampionMastery[] masteries =
+                await App.MasteryApiClient.GetMasteriesBySummonerId(summoner.Region.Region, summoner.SummonerInfo.Id);
+
+            LeagueChampionMastery maxMastery = masteries.MaxBy(m => m.MasteryPoints)!;
+
+            Dictionary<int, double> championWeights = new Dictionary<int, double>();
+            List<int> championsWithoutMastery = new List<int>((AppCache.Instance.Champions.Count - 1) - masteries.Length);
+            double otherChampsProbability = 1d - (0d / maxMastery.MasteryPoints) - 0.0002d;
+
+            foreach (Champion champion in AppCache.Instance.Champions)
+            {
+                if (champion.Id == -1)
+                    continue;
+                LeagueChampionMastery? mastery = masteries.FirstOrDefault(m => m.ChampionId == champion.Id);
+                if (mastery is not null)
+                {
+                    double weight = 1d - ((double)mastery.MasteryPoints / (double)maxMastery.MasteryPoints);
+                    if (IsEqual(0d, weight, 0.00001))
+                        weight += 0.0002d;
+                    championWeights.Add(champion.Id, weight);
+                }
+                else
+                {
+                    championsWithoutMastery.Add(champion.Id);
+                    championWeights.Add(champion.Id, otherChampsProbability);
+                }
+            }
+
+            List<LeagueChampion> generatedChampions = new List<LeagueChampion>(amount);
+
+            for (int i = 0; i < amount; i++)
+            {
+                int championId = championWeights.RandomElementByWeight(cW => cW.Value).Key;
+
+                Champion champ = AppCache.Instance.Champions[championId];
+                LeagueChampionMastery mastery = masteries.FirstOrDefault(m => m.ChampionId == champ.Id);
+                LeagueChampion champion = new LeagueChampion(champ, mastery); 
+                generatedChampions.Add(champion);
+                championWeights.Remove(championId);
+                championsWithoutMastery.Remove(championId);
+            }
+
+            return generatedChampions.ToArray();
+        }
+
+        public static bool IsEqual(double a, double b, double delta)
+        {
+            return Math.Abs(a - b) < delta;
+        }
+    }
+}
