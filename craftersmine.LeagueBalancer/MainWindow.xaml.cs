@@ -172,12 +172,18 @@ namespace craftersmine.LeagueBalancer
                 }
 
                 if (Champions.ContainsKey(summoner))
+                {
                     RerollChampionButton.IsEnabled = true;
-
-                SelectPlayerTip.Visibility = Visibility.Hidden;
-                RandomizedInfoSpinner.Visibility = Visibility.Hidden;
-                SelectedSummonerChampions.ItemsSource = Champions[summoner];
-                SelectedSummonerChampions.Visibility = Visibility.Visible;
+                    SelectPlayerTip.Visibility = Visibility.Hidden;
+                    RandomizedInfoSpinner.Visibility = Visibility.Hidden;
+                    SelectedSummonerChampions.ItemsSource = Champions[summoner];
+                    SelectedSummonerChampions.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    SelectedSummonerChampions.Visibility = Visibility.Hidden;
+                    SelectPlayerTip.Visibility = Visibility.Visible;
+                }
             }
         }
 
@@ -269,16 +275,17 @@ namespace craftersmine.LeagueBalancer
             {
                 try
                 {
-                    
                     CopyChampionsToClipboard.IsEnabled = false;
                     RandomizedInfoSpinner.Visibility = Visibility.Visible;
                     SelectPlayerTip.Visibility = Visibility.Hidden;
+                    SelectedSummonerChampions.Visibility = Visibility.Hidden;
                     IsEnabled = false;
                     LeagueChampion[] champions = await Balancer.GetChampionList(summoner, (int)AvailablePoolSlider.Value, 100);
                     Champions[summoner] = champions;
                     SelectedSummonerChampions.ItemsSource = Champions[summoner];
                     SummonersListBox.SelectedItem = summoner;
                     RandomizedInfoSpinner.Visibility = Visibility.Hidden;
+                    SelectedSummonerChampions.Visibility = Visibility.Visible;
                     CopyChampionsToClipboard.IsEnabled = true;
                     IsEnabled = true;
                 }
