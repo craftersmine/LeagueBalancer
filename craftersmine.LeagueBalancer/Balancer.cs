@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using craftersmine.League.CommunityDragon;
 using craftersmine.Riot.Api.Common;
 using craftersmine.Riot.Api.League.Mastery;
-using craftersmine.Riot.Api.League.Matches;
 
 namespace craftersmine.LeagueBalancer
 {
