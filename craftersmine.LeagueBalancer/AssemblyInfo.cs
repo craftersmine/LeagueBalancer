@@ -10,10 +10,5 @@ using System.Windows;
                                               // app, or any theme specific resource dictionaries)
 )]
 
-[assembly:AssemblyProduct("League of Legends closed-game balancer")]
-[assembly:AssemblyCompany("craftersmine")]
 [assembly:AssemblyCopyright("Copyright © craftersmine 2023")]
 [assembly:AssemblyDescription("Helps you balance League of Legends teams according overall LP count for closed-games")]
-[assembly:AssemblyFileVersion("1.0.0.0")]
-[assembly:AssemblyVersion("1.0.0.0")]
-[assembly:AssemblyTitle("League of Legends closed-game balancer")]
