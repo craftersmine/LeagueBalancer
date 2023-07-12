@@ -27,7 +27,7 @@ namespace craftersmine.LeagueBalancer
         protected override void OnStartup(StartupEventArgs e)
         {
             ClientSettings = RiotApiClientSettingsBuilder
-                .CreateSettingsBuilder("RGAPI-82748089-fe97-4673-b120-e4543d11f804")
+                .CreateSettingsBuilder("RGAPI-API-KEY-GOES-HERE")
                 .UseDefaultDataRegion(RiotRegion.Europe).UseExperimentalLeaguesApi().Build();
 
             SummonerApiClient = new LeagueSummonerApiClient(ClientSettings);
