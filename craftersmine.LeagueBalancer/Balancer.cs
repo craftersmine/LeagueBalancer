@@ -15,7 +15,7 @@ namespace craftersmine.LeagueBalancer
     {
         private const double AllChampsDeltaWeight = 0.0002d;
         private const double PlayerMainWeight = 0.3d;
-        private const double PlayerMasteryChampionWeightModified = 1d;
+        private const double PlayerMasteryChampionWeightModifier = 1d;
 
         public static Dictionary<LeagueTeamType, LeagueTeam> BalanceTeams(Summoner[] summoners)
         {
@@ -79,7 +79,7 @@ namespace craftersmine.LeagueBalancer
                     double weight = 1d - ((double)mastery.MasteryPoints / (double)maxMastery.MasteryPoints);
                     if (IsEqual(0d, weight, 0.00001))
                         weight += PlayerMainWeight;
-                    championWeights.Add(champion.Id, weight * PlayerMasteryChampionWeightModified);
+                    championWeights.Add(champion.Id, weight * PlayerMasteryChampionWeightModifier);
                 }
                 else
                 {
