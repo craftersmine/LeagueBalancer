@@ -29,7 +29,7 @@ namespace craftersmine.LeagueBalancer
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
             ClientSettings = RiotApiClientSettingsBuilder
-                .CreateSettingsBuilder("RGAPI-API-KEY-GOES-HERE")
+                .CreateSettingsBuilder(KeyManager.RetrieveKey())
                 .UseDefaultDataRegion(RiotRegion.Europe).UseExperimentalLeaguesApi().Build();
 
             SummonerApiClient = new LeagueSummonerApiClient(ClientSettings);
