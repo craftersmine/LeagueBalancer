@@ -311,7 +311,7 @@ namespace craftersmine.LeagueBalancer
                     SummonersListBox.SelectedItem = summoner;
                     RandomizedInfoSpinner.Visibility = Visibility.Hidden;
                     SelectedSummonerChampions.Visibility = Visibility.Visible;
-                    CopyChampionsToClipboard.IsEnabled = false;
+                    CopyChampionsToClipboard.IsEnabled = true;
                     IsEnabled = true;
                 }
                 catch (Exception ex)
@@ -331,6 +331,7 @@ namespace craftersmine.LeagueBalancer
                     }
                     IsEnabled = true;
                     SelectedSummonerChampions.ItemsSource = null;
+                    CopyChampionsToClipboard.IsEnabled = true;
                     SummonersListBox.SelectedItem = summoner;
                     RandomizedInfoSpinner.Visibility = Visibility.Hidden;
                     SelectedSummonerChampions.Visibility = Visibility.Visible;
