@@ -21,7 +21,7 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Margin="4" TextWrapping="Wrap" Foreground="{StaticResource LeagueTextColorDisabled}"
-                   Text="Made by craftersmine with ❤️ - App version 1.0.1-beta.&#10;This application was created under Riot Games' &quot;Legal Jibber Jabber&quot; policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project."/>
+                   Text="Made by craftersmine with ❤️ - App version 1.0.2-beta.&#10;This application was created under Riot Games' &quot;Legal Jibber Jabber&quot; policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project."/>
 
         <Grid Grid.Column="0" Grid.Row="0">
             <Grid.RowDefinitions>
