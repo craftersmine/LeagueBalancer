@@ -13,7 +13,7 @@ namespace craftersmine.LeagueBalancer
 {
     public class Balancer
     {
-        private const double AllChampsDeltaWeight = 0.0002d;
+        private const double AllChampsDeltaWeight = 0.002d;
         private const double PlayerMainWeight = 0.3d;
         private const double PlayerMasteryChampionWeightModifier = 0.95d;
 
