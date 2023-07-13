@@ -344,10 +344,28 @@ namespace craftersmine.LeagueBalancer
             IsEnabled = false;
             Cursor = Cursors.Wait;
             string[] summoners = InputSanitizer.SanitizeInputFromChat(Clipboard.GetText());
-            foreach (string s in summoners)
+            string[] possibleSummoners = new string[10 - Summoners.Count];
+
+            int count = 0;
+
+            foreach (string summoner in summoners)
             {
-                AddSummoner(s);
+                if (Summoners.FirstOrDefault(s => s.SummonerInfo.Name == summoner) is null)
+                {
+                    possibleSummoners[count] = summoner;
+                    count++;
+                }
+                if (count == 10 - Summoners.Count) 
+                    break;
             }
+
+            for (int i = 0;i < possibleSummoners.Length; i++)
+                AddSummoner(possibleSummoners[i]);
+
+            //foreach (string s in summoners)
+            //{
+            //    AddSummoner(s);
+            //}
 
             Cursor = Cursors.Arrow;
             IsEnabled = true;
