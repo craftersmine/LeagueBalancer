@@ -13,6 +13,7 @@ Application preview:
 ![Controls Preview](https://raw.githubusercontent.com/craftersmine/LeagueBalancer/master/.github/ApplicationPreview.png)
 
 ## Installation:
+* **THE APP REQUIRES .NET 6!** You can download it [here](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-6.0.20-windows-x64-installer)
 * Download latest application archive [here](https://github.com/craftersmine/LeagueBalancer/releases)
 * Extract in whatever folder your soul wants
 * Launch `craftersmine.LeagueBalancer.exe` executable
