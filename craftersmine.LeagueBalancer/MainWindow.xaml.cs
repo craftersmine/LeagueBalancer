@@ -117,6 +117,8 @@ namespace craftersmine.LeagueBalancer
                                 break;
                         }
                     }
+
+                    IsEnabled = true;
                 }
             }
 
@@ -244,28 +246,51 @@ namespace craftersmine.LeagueBalancer
 
         private async void OnRandomizeInfoClick(object sender, RoutedEventArgs e)
         {
-            Champions.Clear();
-            CopyChampionsToClipboard.IsEnabled = false;
-            SelectedSummonerChampions.Visibility = Visibility.Hidden;
-            SelectedSummonerChampions.ItemsSource = null;
-            SummonersListBox.SelectedItem = null;
-            RandomizedInfoSpinner.Visibility = Visibility.Visible;
-            SelectPlayerTip.Visibility = Visibility.Hidden;
-            IsEnabled = false;
-
-            if (!Summoners.Any())
-                return;
-
-            foreach (Summoner summoner in Summoners)
+            try
             {
-                LeagueChampion[] champions = await Balancer.GetChampionList(summoner, (int)AvailablePoolSlider.Value, 100);
-                Champions.Add(summoner, champions);
-            }
+                Champions.Clear();
+                CopyChampionsToClipboard.IsEnabled = false;
+                SelectedSummonerChampions.Visibility = Visibility.Hidden;
+                SelectedSummonerChampions.ItemsSource = null;
+                SummonersListBox.SelectedItem = null;
+                RandomizedInfoSpinner.Visibility = Visibility.Visible;
+                SelectPlayerTip.Visibility = Visibility.Hidden;
+                IsEnabled = false;
 
-            RandomizedInfoSpinner.Visibility = Visibility.Hidden;
-            CopyChampionsToClipboard.IsEnabled = true;
-            SelectPlayerTip.Visibility = Visibility.Visible;
-            IsEnabled = true;
+                if (!Summoners.Any())
+                    return;
+
+                foreach (Summoner summoner in Summoners)
+                {
+                    LeagueChampion[] champions = await Balancer.GetChampionList(summoner, (int)AvailablePoolSlider.Value, 100);
+                    Champions.Add(summoner, champions);
+                }
+
+                RandomizedInfoSpinner.Visibility = Visibility.Hidden;
+                CopyChampionsToClipboard.IsEnabled = true;
+                SelectPlayerTip.Visibility = Visibility.Visible;
+                IsEnabled = true;
+            }
+            catch (Exception ex)
+            {
+                if (ex is RiotApiException rae)
+                {
+                    switch (rae.ResponseCode)
+                    {
+                        case HttpResponseCode.Forbidden:
+                        case HttpResponseCode.Unauthorized:
+                            MessageBox.Show("Unable to access Riot Games API due to issue with Application API key! Contact app developer about this error!", "Expired or broken API key!", MessageBoxButton.OK, MessageBoxImage.Error);
+                            break;
+                        case HttpResponseCode.RateLimitExceeded:
+                            MessageBox.Show("Unable to access Riot Games API due to being rate-limited! Try again after " + App.SummonerApiClient.RetryAfter?.ToString("g"), "Rate-limited!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            break;
+                    }
+                }
+                RandomizedInfoSpinner.Visibility = Visibility.Hidden;
+                CopyChampionsToClipboard.IsEnabled = false;
+                SelectPlayerTip.Visibility = Visibility.Visible;
+                IsEnabled = true;
+            }
         }
 
         private async void OnRerollChampionInfoClick(object sender, RoutedEventArgs e)
@@ -286,7 +311,7 @@ namespace craftersmine.LeagueBalancer
                     SummonersListBox.SelectedItem = summoner;
                     RandomizedInfoSpinner.Visibility = Visibility.Hidden;
                     SelectedSummonerChampions.Visibility = Visibility.Visible;
-                    CopyChampionsToClipboard.IsEnabled = true;
+                    CopyChampionsToClipboard.IsEnabled = false;
                     IsEnabled = true;
                 }
                 catch (Exception ex)
@@ -304,6 +329,11 @@ namespace craftersmine.LeagueBalancer
                                 break;
                         }
                     }
+                    IsEnabled = true;
+                    SelectedSummonerChampions.ItemsSource = null;
+                    SummonersListBox.SelectedItem = summoner;
+                    RandomizedInfoSpinner.Visibility = Visibility.Hidden;
+                    SelectedSummonerChampions.Visibility = Visibility.Visible;
                 }
             }
         }
