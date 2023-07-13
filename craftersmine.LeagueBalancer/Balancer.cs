@@ -13,6 +13,10 @@ namespace craftersmine.LeagueBalancer
 {
     public class Balancer
     {
+        private const double AllChampsDeltaWeight = 0.0002d;
+        private const double PlayerMainWeight = 0.3d;
+        private const double PlayerMasteryChampionWeightModified = 1d;
+
         public static Dictionary<LeagueTeamType, LeagueTeam> BalanceTeams(Summoner[] summoners)
         {
             List<Summoner> blueTeam = new List<Summoner>();
@@ -63,7 +67,7 @@ namespace craftersmine.LeagueBalancer
 
             Dictionary<int, double> championWeights = new Dictionary<int, double>();
             List<int> championsWithoutMastery = new List<int>((AppCache.Instance.Champions.Count - 1) - masteries.Length);
-            double otherChampsProbability = 1d - (0d / maxMastery.MasteryPoints) - 0.0002d;
+            double otherChampsProbability = 1d - (0d / maxMastery.MasteryPoints) - AllChampsDeltaWeight;
 
             foreach (Champion champion in AppCache.Instance.Champions)
             {
@@ -74,8 +78,8 @@ namespace craftersmine.LeagueBalancer
                 {
                     double weight = 1d - ((double)mastery.MasteryPoints / (double)maxMastery.MasteryPoints);
                     if (IsEqual(0d, weight, 0.00001))
-                        weight += 0.0002d;
-                    championWeights.Add(champion.Id, weight);
+                        weight += PlayerMainWeight;
+                    championWeights.Add(champion.Id, weight * PlayerMasteryChampionWeightModified);
                 }
                 else
                 {
