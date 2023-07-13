@@ -385,5 +385,10 @@ namespace craftersmine.LeagueBalancer
             string message = string.Format(ChatMainFormat, string.Join(Environment.NewLine, summoners));
             Clipboard.SetText(message);
         }
+
+        private void OnBottomLinkClick(object sender, RequestNavigateEventArgs e)
+        {
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(e.Uri.AbsoluteUri) { UseShellExecute = true });
+        }
     }
 }

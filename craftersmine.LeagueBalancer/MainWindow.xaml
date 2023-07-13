@@ -20,8 +20,14 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Margin="4" TextWrapping="Wrap" Foreground="{StaticResource LeagueTextColorDisabled}"
-                   Text="Made by craftersmine with ❤️ - App version 1.0.2-beta.&#10;This application was created under Riot Games' &quot;Legal Jibber Jabber&quot; policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project."/>
+        <TextBlock Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Margin="4" TextWrapping="Wrap" Foreground="{StaticResource LeagueTextColorDisabled}">
+            Made by craftersmine with ❤️ - App version 1.0.2-beta. - 
+            <Hyperlink NavigateUri="https://github.com/craftersmine/LeagueBalancer" RequestNavigate="OnBottomLinkClick">🔗GitHub Page</Hyperlink> - 
+            <Hyperlink NavigateUri="https://github.com/craftersmine/LeagueBalancer/issues/new?assignees=&amp;labels=bug&amp;projects=&amp;template=bug_report.md&amp;title=%5BBUG%5D+Bug+report" RequestNavigate="OnBottomLinkClick">🔗Report a Bug</Hyperlink> - 
+            <Hyperlink NavigateUri="https://github.com/craftersmine/LeagueBalancer/issues/new?assignees=&amp;labels=enhancement&amp;projects=&amp;template=feature_request.md&amp;title=" RequestNavigate="OnBottomLinkClick">🔗Request a feature</Hyperlink>
+            <LineBreak/>
+            This application was created under Riot Games' &quot;Legal Jibber Jabber&quot; policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.
+        </TextBlock>
 
         <Grid Grid.Column="0" Grid.Row="0">
             <Grid.RowDefinitions>
