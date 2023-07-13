@@ -15,7 +15,7 @@ namespace craftersmine.LeagueBalancer
     {
         private const double AllChampsDeltaWeight = 0.0002d;
         private const double PlayerMainWeight = 0.3d;
-        private const double PlayerMasteryChampionWeightModifier = 1d;
+        private const double PlayerMasteryChampionWeightModifier = 0.95d;
 
         public static Dictionary<LeagueTeamType, LeagueTeam> BalanceTeams(Summoner[] summoners)
         {
