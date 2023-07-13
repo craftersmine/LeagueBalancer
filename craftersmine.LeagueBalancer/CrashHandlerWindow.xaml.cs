@@ -53,5 +53,13 @@ namespace craftersmine.LeagueBalancer
                 lines.Add(GetStackTrace(ex.InnerException));
             return string.Join(Environment.NewLine, lines.ToArray());
         }
+
+        private void CopyInfoClick(object sender, RoutedEventArgs e)
+        {
+            string infoFormat = "Exception Type: {0}\r\nException Message: {1}\r\nException StackTrace:\r\n{2}";
+
+            string info = string.Format(infoFormat, Type, Message, StackTrace);
+            Clipboard.SetText(info);
+        }
     }
 }

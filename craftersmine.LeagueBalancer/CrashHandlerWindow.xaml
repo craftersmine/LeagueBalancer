@@ -34,10 +34,12 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="1" Content="Open GitHub Issues" Height="32" Width="150" Margin="0 0 8 0" Click="OpenGithubIssuesClick"/>
-            <Button Grid.Column="2" Height="32" Content="Close application" Width="120" Click="CloseAppClick"/>
+            <Button Grid.Column="1" Content="Copy Info to Clipboard" Height="32" Width="150" Margin="0 0 8 0" Click="CopyInfoClick"/>
+            <Button Grid.Column="2" Content="Open GitHub Issues" Height="32" Width="150" Margin="0 0 8 0" Click="OpenGithubIssuesClick"/>
+            <Button Grid.Column="3" Height="32" Content="Close application" Width="120" Click="CloseAppClick"/>
         </Grid>
     </Grid>
 </Window>
