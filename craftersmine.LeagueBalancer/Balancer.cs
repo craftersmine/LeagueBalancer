@@ -76,7 +76,7 @@ namespace craftersmine.LeagueBalancer
                 LeagueChampionMastery? mastery = masteries.FirstOrDefault(m => m.ChampionId == champion.Id);
                 if (mastery is not null)
                 {
-                    double weight = 1d - ((double)mastery.MasteryPoints / (double)maxMastery.MasteryPoints);
+                    double weight = (1d - ((double)mastery.MasteryPoints / (double)maxMastery.MasteryPoints)) * PlayerMasteryChampionWeightModifier;
                     if (IsEqual(0d, weight, 0.00001))
                         weight += PlayerMainWeight;
                     championWeights.Add(champion.Id, weight * PlayerMasteryChampionWeightModifier);
