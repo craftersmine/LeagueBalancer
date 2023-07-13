@@ -344,6 +344,14 @@ namespace craftersmine.LeagueBalancer
             IsEnabled = false;
             Cursor = Cursors.Wait;
             string[] summoners = InputSanitizer.SanitizeInputFromChat(Clipboard.GetText());
+
+            if (!summoners.Any())
+            {
+                IsEnabled = true;
+                Cursor = Cursors.Arrow;
+                return;
+            }
+            
             string[] possibleSummoners = new string[10 - Summoners.Count];
 
             int count = 0;
@@ -360,7 +368,8 @@ namespace craftersmine.LeagueBalancer
             }
 
             for (int i = 0;i < possibleSummoners.Length; i++)
-                AddSummoner(possibleSummoners[i]);
+                if (!string.IsNullOrWhiteSpace(possibleSummoners[i]))
+                    AddSummoner(possibleSummoners[i]);
 
             //foreach (string s in summoners)
             //{
