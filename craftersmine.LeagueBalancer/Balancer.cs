@@ -32,7 +32,7 @@ namespace craftersmine.LeagueBalancer
             {
                 Summoner summoner = orderedSummoners.MaxBy(s => s.LeaguePointsAmount)!;
 
-                if (blueTeamLp < redTeamLp)
+                if (blueTeamLp < redTeamLp && blueTeam.Count < 5)
                 {
                     blueTeam.Add(summoner);
                     orderedSummoners.Remove(summoner);
