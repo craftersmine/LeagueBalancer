@@ -399,5 +399,19 @@ namespace craftersmine.LeagueBalancer
         {
             System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(e.Uri.AbsoluteUri) { UseShellExecute = true });
         }
+
+        private void OnClearListClick(object sender, RoutedEventArgs e)
+        {
+            Summoners.Clear();
+            BlueTeam.Clear();
+            RedTeam.Clear();
+            Champions.Clear();
+            AddSummonerButton.IsEnabled = true;
+            RemoveSummonerButton.IsEnabled = false;
+            BalanceButton.IsEnabled = false;
+            RandomizeInfoButton.IsEnabled = false;
+            RerollChampionButton.IsEnabled = false;
+            CopyChampionsToClipboard.IsEnabled = false;
+        }
     }
 }

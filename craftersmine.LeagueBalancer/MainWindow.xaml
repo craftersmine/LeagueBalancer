@@ -45,7 +45,7 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="120"/>
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
@@ -77,6 +77,10 @@
                     <Path Width="16" Height="16" Stroke="{StaticResource LeagueButtonTextColorDefault}" SnapsToDevicePixels="True" StrokeThickness="2"
                           Data="M 4 4 L 12 12 M 12 4 L 4 12">
                     </Path>
+                </Button>
+                <Button Width="32" Height="32" Margin="4" Click="OnClearListClick">
+                    <Path Width="16" Height="16" Stroke="{StaticResource LeagueButtonTextColorDefault}" SnapsToDevicePixels="True" ToolTip="Clear Players" StrokeThickness="1.5"
+                          Data="M 3 4 L 12 4 M 3 7 L 12 7 M 3 10 L 8 10 M 10 10 L 14 14 M 10 14 L 14 10"/>
                 </Button>
             </StackPanel>
 
