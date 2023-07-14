@@ -96,7 +96,7 @@ namespace craftersmine.LeagueBalancer
 
                 Champion champ = AppCache.Instance.Champions[championId];
                 LeagueChampionMastery mastery = masteries.FirstOrDefault(m => m.ChampionId == champ.Id);
-                LeagueChampion champion = new LeagueChampion(champ, mastery); 
+                LeagueChampion champion = new LeagueChampion(champ, mastery, championWeights[champ.Id]); 
                 generatedChampions.Add(champion);
                 championWeights.Remove(championId);
                 championsWithoutMastery.Remove(championId);

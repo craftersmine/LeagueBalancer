@@ -235,13 +235,14 @@
             <leagueuicontrols:Spinner Grid.Row="0" Grid.RowSpan="2" x:Name="RandomizedInfoSpinner" Visibility="Hidden"/>
 
             <Grid Grid.Row="1" x:Name="PlayerAdditionalInfoContainer" Margin="4">
-                <ListView x:Name="SelectedSummonerChampions">
+                <ListView x:Name="SelectedSummonerChampions" SelectionChanged="OnBalancedSummonersListSelectionChanged">
                     <ListView.ItemTemplate>
                         <DataTemplate DataType="{x:Type local:LeagueChampion}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="70"/>
-                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
                                 <Border Grid.Column="0" Width="64" Height="64" BorderBrush="{StaticResource LeagueUserPictureImageBorderDefault}" BorderThickness="2" CornerRadius="32">
                                     <Ellipse>
@@ -251,6 +252,7 @@
                                     </Ellipse>
                                 </Border>
                                 <TextBlock Grid.Column="1" VerticalAlignment="Center" Margin="8" Style="{StaticResource LeagueSubHeaderText}" Text="{Binding Champion.Name}"/>
+                                <TextBlock Grid.Column="2" VerticalAlignment="Center" Margin="8" Style="{StaticResource LeagueSubHeaderText}" Foreground="{StaticResource LeagueTextColorDisabled}" Text="{Binding Weight, StringFormat={}({0:F2} %)}"/>
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
