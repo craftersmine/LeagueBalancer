@@ -244,15 +244,20 @@
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <Border Grid.Column="0" Width="64" Height="64" BorderBrush="{StaticResource LeagueUserPictureImageBorderDefault}" BorderThickness="2" CornerRadius="32">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Width="64" Height="64" BorderBrush="{StaticResource LeagueUserPictureImageBorderDefault}" BorderThickness="2" CornerRadius="32">
                                     <Ellipse>
                                         <Ellipse.Fill>
                                             <ImageBrush ImageSource="{Binding  Icon}"/>
                                         </Ellipse.Fill>
                                     </Ellipse>
                                 </Border>
-                                <TextBlock Grid.Column="1" VerticalAlignment="Center" Margin="8" Style="{StaticResource LeagueSubHeaderText}" Text="{Binding Champion.Name}"/>
-                                <TextBlock Grid.Column="2" VerticalAlignment="Center" Margin="8" Style="{StaticResource LeagueSubHeaderText}" Foreground="{StaticResource LeagueTextColorDisabled}" Text="{Binding Weight, StringFormat={}({0:F2} %)}"/>
+                                <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="8" Style="{StaticResource LeagueSubHeaderText}" Text="{Binding Champion.Name}"/>
+                                <TextBlock Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="8" Style="{StaticResource LeagueDefaultText}" Foreground="{StaticResource LeagueTextColorDisabled}" Text="{Binding MasteryPoints, StringFormat={}{0} mastery points}"/>
+                                <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="8" Style="{StaticResource LeagueDefaultText}" Foreground="{StaticResource LeagueTextColorDisabled}" Text="{Binding Weight, StringFormat={}({0:F2} %)}"/>
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
