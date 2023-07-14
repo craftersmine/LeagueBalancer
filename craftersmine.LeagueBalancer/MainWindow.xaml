@@ -20,6 +20,14 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
+        <Image Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2" Stretch="UniformToFill" Source="/BackgroundImg.png">
+            <Image.Effect>
+                <BlurEffect Radius="15"/>
+            </Image.Effect>
+        </Image>
+
+        <Rectangle Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2" Fill="{StaticResource LeagueWindowBackground}" Opacity="0.5"/>
+
         <TextBlock Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Margin="4" TextWrapping="Wrap" Foreground="{StaticResource LeagueTextColorDisabled}">
             Made by craftersmine with ❤️ - App version 1.0.2-beta. - 
             <Hyperlink NavigateUri="https://github.com/craftersmine/LeagueBalancer" RequestNavigate="OnBottomLinkClick">🔗GitHub Page</Hyperlink> - 

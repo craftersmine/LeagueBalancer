@@ -10,10 +10,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="BackgroundImg.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="craftersmine.League.CommunityDragon" Version="0.3.2-dev" />
     <PackageReference Include="craftersmine.Riot.Api.League.Mastery" Version="0.1.0-dev" />
     <PackageReference Include="craftersmine.Riot.Api.League.SummonerLeagues" Version="0.1.0-dev" />
     <PackageReference Include="craftersmine.Ui.League" Version="1.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="BackgroundImg.png" />
   </ItemGroup>
 
 </Project>
