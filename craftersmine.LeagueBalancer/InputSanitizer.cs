@@ -11,9 +11,7 @@ namespace craftersmine.LeagueBalancer
         public static readonly string[] PossibleLobbyMessages =
         {
             " присоединился к лобби",
-            " покинул лобби",
             " joined the lobby",
-            " left the lobby"
         };
 
         public static readonly string[] LineEndings =
