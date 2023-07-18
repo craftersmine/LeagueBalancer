@@ -349,3 +349,4 @@ healthchecksdb
 MigrationBackup/
 
 craftersmine.LeagueBalancer/KeyManager.cs
+craftersmine.LeagueBalancer/Properties/launchSettings.json
