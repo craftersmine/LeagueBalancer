@@ -55,7 +55,7 @@ namespace craftersmine.LeagueBalancer
             return teams;
         }
 
-        public static async Task<LeagueChampion[]> GetChampionList(Summoner summoner, int amount, int gamesToGet)
+        public static async Task<LeagueChampion[]> GetChampionList(Summoner summoner, int amount, double masteryModifier = 1d)
         {
             if (AppCache.Instance.Champions is null || !AppCache.Instance.Champions.Any())
                 AppCache.Instance.Champions = await App.CommunityDragonClient.GetChampionsAsync();
