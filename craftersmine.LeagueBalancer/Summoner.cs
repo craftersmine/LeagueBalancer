@@ -101,7 +101,7 @@ namespace craftersmine.LeagueBalancer
 
             foreach (var league in leagues)
             {
-                if (league.LeagueQueueType != LeagueQueueType.RankedFlex || league.LeagueQueueType != LeagueQueueType.RankedSoloDuo)
+                if (league.LeagueQueueType != LeagueQueueType.RankedFlex && league.LeagueQueueType != LeagueQueueType.RankedSoloDuo)
                     continue;
 
                 if (SummonerLeague is null)
@@ -158,6 +158,7 @@ namespace craftersmine.LeagueBalancer
                 case LeagueRankedTier.Silver:
                 case LeagueRankedTier.Gold:
                 case LeagueRankedTier.Platinum:
+                case LeagueRankedTier.Emerald:
                 case LeagueRankedTier.Diamond:
                 case LeagueRankedTier.Master:
                     tierLpValue = ((int)tier - 1) * 400;
