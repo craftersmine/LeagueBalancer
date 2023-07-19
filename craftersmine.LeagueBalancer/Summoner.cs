@@ -117,6 +117,7 @@ namespace craftersmine.LeagueBalancer
                     case LeagueRankedTier.Silver:
                     case LeagueRankedTier.Gold:
                     case LeagueRankedTier.Platinum:
+                    case LeagueRankedTier.Emerald:
                     case LeagueRankedTier.Diamond:
                         SummonerLeagueString = SummonerLeague.Tier.ToString() + " " + SummonerLeague.DivisionRank.ToString() + " (" + LeaguePointsAmount + " LP)";
                         break;
