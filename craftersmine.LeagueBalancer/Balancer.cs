@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -13,6 +13,10 @@ namespace craftersmine.LeagueBalancer
 {
     public class Balancer
     {
+        private const double AllChampsDeltaWeight = 0.05d;
+        private const double PlayerMainWeight = 0.6d;
+        private const double PlayerMasteryChampionWeightModifier = 0.95d;
+
         public static Dictionary<LeagueTeamType, LeagueTeam> BalanceTeams(Summoner[] summoners)
         {
             List<Summoner> blueTeam = new List<Summoner>();
@@ -28,7 +32,7 @@ namespace craftersmine.LeagueBalancer
             {
                 Summoner summoner = orderedSummoners.MaxBy(s => s.LeaguePointsAmount)!;
 
-                if (blueTeamLp < redTeamLp)
+                if (blueTeamLp < redTeamLp && blueTeam.Count < 5)
                 {
                     blueTeam.Add(summoner);
                     orderedSummoners.Remove(summoner);
@@ -51,7 +55,7 @@ namespace craftersmine.LeagueBalancer
             return teams;
         }
 
-        public static async Task<LeagueChampion[]> GetChampionList(Summoner summoner, int amount, int gamesToGet)
+        public static async Task<LeagueChampion[]> GetChampionList(Summoner summoner, int amount, double masteryModifier = 1d)
         {
             if (AppCache.Instance.Champions is null || !AppCache.Instance.Champions.Any())
                 AppCache.Instance.Champions = await App.CommunityDragonClient.GetChampionsAsync();
@@ -63,7 +67,7 @@ namespace craftersmine.LeagueBalancer
 
             Dictionary<int, double> championWeights = new Dictionary<int, double>();
             List<int> championsWithoutMastery = new List<int>((AppCache.Instance.Champions.Count - 1) - masteries.Length);
-            double otherChampsProbability = 1d - (0d / maxMastery.MasteryPoints) - 0.0002d;
+            double otherChampsProbability = 1d - (0d / maxMastery.MasteryPoints) - AllChampsDeltaWeight;
 
             foreach (Champion champion in AppCache.Instance.Champions)
             {
@@ -72,10 +76,10 @@ namespace craftersmine.LeagueBalancer
                 LeagueChampionMastery? mastery = masteries.FirstOrDefault(m => m.ChampionId == champion.Id);
                 if (mastery is not null)
                 {
-                    double weight = 1d - ((double)mastery.MasteryPoints / (double)maxMastery.MasteryPoints);
-                    if (IsEqual(0d, weight, 0.00001))
-                        weight += 0.0002d;
-                    championWeights.Add(champion.Id, weight);
+                    double weight = (1d - ((double)mastery.MasteryPoints / (double)maxMastery.MasteryPoints));
+                    if (IsEqual(0.001d, weight, 0.01))
+                        weight += PlayerMainWeight;
+                    championWeights.Add(champion.Id, weight * PlayerMasteryChampionWeightModifier);
                 }
                 else
                 {
@@ -92,7 +96,7 @@ namespace craftersmine.LeagueBalancer
 
                 Champion champ = AppCache.Instance.Champions[championId];
                 LeagueChampionMastery mastery = masteries.FirstOrDefault(m => m.ChampionId == champ.Id);
-                LeagueChampion champion = new LeagueChampion(champ, mastery); 
+                LeagueChampion champion = new LeagueChampion(champ, mastery, championWeights[champ.Id]); 
                 generatedChampions.Add(champion);
                 championWeights.Remove(championId);
                 championsWithoutMastery.Remove(championId);

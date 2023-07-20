@@ -117,6 +117,8 @@ namespace craftersmine.LeagueBalancer
                                 break;
                         }
                     }
+
+                    IsEnabled = true;
                 }
             }
 
@@ -244,28 +246,51 @@ namespace craftersmine.LeagueBalancer
 
         private async void OnRandomizeInfoClick(object sender, RoutedEventArgs e)
         {
-            Champions.Clear();
-            CopyChampionsToClipboard.IsEnabled = false;
-            SelectedSummonerChampions.Visibility = Visibility.Hidden;
-            SelectedSummonerChampions.ItemsSource = null;
-            SummonersListBox.SelectedItem = null;
-            RandomizedInfoSpinner.Visibility = Visibility.Visible;
-            SelectPlayerTip.Visibility = Visibility.Hidden;
-            IsEnabled = false;
-
-            if (!Summoners.Any())
-                return;
-
-            foreach (Summoner summoner in Summoners)
+            try
             {
-                LeagueChampion[] champions = await Balancer.GetChampionList(summoner, (int)AvailablePoolSlider.Value, 100);
-                Champions.Add(summoner, champions);
-            }
+                Champions.Clear();
+                CopyChampionsToClipboard.IsEnabled = false;
+                SelectedSummonerChampions.Visibility = Visibility.Hidden;
+                SelectedSummonerChampions.ItemsSource = null;
+                SummonersListBox.SelectedItem = null;
+                RandomizedInfoSpinner.Visibility = Visibility.Visible;
+                SelectPlayerTip.Visibility = Visibility.Hidden;
+                IsEnabled = false;
 
-            RandomizedInfoSpinner.Visibility = Visibility.Hidden;
-            CopyChampionsToClipboard.IsEnabled = true;
-            SelectPlayerTip.Visibility = Visibility.Visible;
-            IsEnabled = true;
+                if (!Summoners.Any())
+                    return;
+
+                foreach (Summoner summoner in Summoners)
+                {
+                    LeagueChampion[] champions = await Balancer.GetChampionList(summoner, (int)AvailablePoolSlider.Value, 100);
+                    Champions.Add(summoner, champions);
+                }
+
+                RandomizedInfoSpinner.Visibility = Visibility.Hidden;
+                CopyChampionsToClipboard.IsEnabled = true;
+                SelectPlayerTip.Visibility = Visibility.Visible;
+                IsEnabled = true;
+            }
+            catch (Exception ex)
+            {
+                if (ex is RiotApiException rae)
+                {
+                    switch (rae.ResponseCode)
+                    {
+                        case HttpResponseCode.Forbidden:
+                        case HttpResponseCode.Unauthorized:
+                            MessageBox.Show("Unable to access Riot Games API due to issue with Application API key! Contact app developer about this error!", "Expired or broken API key!", MessageBoxButton.OK, MessageBoxImage.Error);
+                            break;
+                        case HttpResponseCode.RateLimitExceeded:
+                            MessageBox.Show("Unable to access Riot Games API due to being rate-limited! Try again after " + App.SummonerApiClient.RetryAfter?.ToString("g"), "Rate-limited!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            break;
+                    }
+                }
+                RandomizedInfoSpinner.Visibility = Visibility.Hidden;
+                CopyChampionsToClipboard.IsEnabled = false;
+                SelectPlayerTip.Visibility = Visibility.Visible;
+                IsEnabled = true;
+            }
         }
 
         private async void OnRerollChampionInfoClick(object sender, RoutedEventArgs e)
@@ -304,6 +329,12 @@ namespace craftersmine.LeagueBalancer
                                 break;
                         }
                     }
+                    IsEnabled = true;
+                    SelectedSummonerChampions.ItemsSource = null;
+                    CopyChampionsToClipboard.IsEnabled = true;
+                    SummonersListBox.SelectedItem = summoner;
+                    RandomizedInfoSpinner.Visibility = Visibility.Hidden;
+                    SelectedSummonerChampions.Visibility = Visibility.Visible;
                 }
             }
         }
@@ -313,10 +344,37 @@ namespace craftersmine.LeagueBalancer
             IsEnabled = false;
             Cursor = Cursors.Wait;
             string[] summoners = InputSanitizer.SanitizeInputFromChat(Clipboard.GetText());
-            foreach (string s in summoners)
+
+            if (!summoners.Any())
             {
-                AddSummoner(s);
+                IsEnabled = true;
+                Cursor = Cursors.Arrow;
+                return;
             }
+            
+            string[] possibleSummoners = new string[10 - Summoners.Count];
+
+            int count = 0;
+
+            foreach (string summoner in summoners)
+            {
+                if (Summoners.FirstOrDefault(s => s.SummonerInfo.Name == summoner) is null)
+                {
+                    possibleSummoners[count] = summoner;
+                    count++;
+                }
+                if (count == 10 - Summoners.Count) 
+                    break;
+            }
+
+            for (int i = 0;i < possibleSummoners.Length; i++)
+                if (!string.IsNullOrWhiteSpace(possibleSummoners[i]))
+                    AddSummoner(possibleSummoners[i]);
+
+            //foreach (string s in summoners)
+            //{
+            //    AddSummoner(s);
+            //}
 
             Cursor = Cursors.Arrow;
             IsEnabled = true;
@@ -335,6 +393,25 @@ namespace craftersmine.LeagueBalancer
 
             string message = string.Format(ChatMainFormat, string.Join(Environment.NewLine, summoners));
             Clipboard.SetText(message);
+        }
+
+        private void OnBottomLinkClick(object sender, RequestNavigateEventArgs e)
+        {
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(e.Uri.AbsoluteUri) { UseShellExecute = true });
+        }
+
+        private void OnClearListClick(object sender, RoutedEventArgs e)
+        {
+            Summoners.Clear();
+            BlueTeam.Clear();
+            RedTeam.Clear();
+            Champions.Clear();
+            AddSummonerButton.IsEnabled = true;
+            RemoveSummonerButton.IsEnabled = false;
+            BalanceButton.IsEnabled = false;
+            RandomizeInfoButton.IsEnabled = false;
+            RerollChampionButton.IsEnabled = false;
+            CopyChampionsToClipboard.IsEnabled = false;
         }
     }
 }

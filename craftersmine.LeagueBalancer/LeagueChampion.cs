@@ -16,6 +16,7 @@ namespace craftersmine.LeagueBalancer
 
         public LeagueChampionMastery? Mastery { get; internal set; }
         public Champion Champion { get; internal set; }
+        public double Weight { get; internal set; }
 
         public ImageSource Icon
         {
@@ -38,10 +39,11 @@ namespace craftersmine.LeagueBalancer
             }
         }
 
-        public LeagueChampion(Champion champion, LeagueChampionMastery? mastery)
+        public LeagueChampion(Champion champion, LeagueChampionMastery? mastery, double weight)
         {
             Mastery = mastery;
             Champion = champion;
+            Weight = weight * 100;
         }
 
         public override string ToString()

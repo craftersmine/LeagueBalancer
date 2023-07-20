@@ -87,6 +87,8 @@ namespace craftersmine.LeagueBalancer
 
         public Summoner(LeagueSummoner summoner, LeagueRegion region)
         {
+            SummonerLeagueString = "Unranked (0 LP)";
+            LeaguePointsAmount = 0;
             SummonerInfo = summoner;
             Region = region;
             Initialize();
@@ -99,6 +101,9 @@ namespace craftersmine.LeagueBalancer
 
             foreach (var league in leagues)
             {
+                if (league.LeagueQueueType != LeagueQueueType.RankedFlex && league.LeagueQueueType != LeagueQueueType.RankedSoloDuo)
+                    continue;
+
                 if (SummonerLeague is null)
                     SummonerLeague = league;
                 if ((int)league.Tier > (int)SummonerLeague.Tier)
@@ -117,6 +122,7 @@ namespace craftersmine.LeagueBalancer
                     case LeagueRankedTier.Silver:
                     case LeagueRankedTier.Gold:
                     case LeagueRankedTier.Platinum:
+                    case LeagueRankedTier.Emerald:
                     case LeagueRankedTier.Diamond:
                         SummonerLeagueString = SummonerLeague.Tier.ToString() + " " + SummonerLeague.DivisionRank.ToString() + " (" + LeaguePointsAmount + " LP)";
                         break;
@@ -152,6 +158,7 @@ namespace craftersmine.LeagueBalancer
                 case LeagueRankedTier.Silver:
                 case LeagueRankedTier.Gold:
                 case LeagueRankedTier.Platinum:
+                case LeagueRankedTier.Emerald:
                 case LeagueRankedTier.Diamond:
                 case LeagueRankedTier.Master:
                     tierLpValue = ((int)tier - 1) * 400;

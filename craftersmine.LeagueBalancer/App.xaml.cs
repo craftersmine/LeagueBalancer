@@ -27,9 +27,10 @@ namespace craftersmine.LeagueBalancer
         protected override void OnStartup(StartupEventArgs e)
         {
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            DispatcherUnhandledException += App_DispatcherUnhandledException;
 
             ClientSettings = RiotApiClientSettingsBuilder
-                .CreateSettingsBuilder("RGAPI-API-KEY-GOES-HERE")
+                .CreateSettingsBuilder(KeyManager.RetrieveKey())
                 .UseDefaultDataRegion(RiotRegion.Europe).UseExperimentalLeaguesApi().Build();
 
             SummonerApiClient = new LeagueSummonerApiClient(ClientSettings);
@@ -41,11 +42,21 @@ namespace craftersmine.LeagueBalancer
             base.OnStartup(e);
         }
 
+        private void App_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            HandleException(e.Exception);
+        }
+
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            CrashHandlerWindow crashHandler = new CrashHandlerWindow((Exception)e.ExceptionObject);
+            HandleException((Exception)e.ExceptionObject);
+        }
+
+        private void HandleException(Exception e)
+        {
+            CrashHandlerWindow crashHandler = new CrashHandlerWindow(e);
             crashHandler.ShowDialog();
-            Environment.Exit(((Exception)e.ExceptionObject).HResult);
+            Environment.Exit(e.HResult);
         }
     }
 }

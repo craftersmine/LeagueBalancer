@@ -50,6 +50,21 @@ namespace craftersmine.LeagueBalancer
                 case RiotPlatform.Turkey:
                     RegionName = "Turkey";
                     break;
+                case RiotPlatform.Philippines:
+                    RegionName = "Philippines";
+                    break;
+                case RiotPlatform.Singapore:
+                    RegionName = "Singapore";
+                    break;
+                case RiotPlatform.Taiwan:
+                    RegionName = "Taiwan";
+                    break;
+                case RiotPlatform.Thailand:
+                    RegionName = "Thailand";
+                    break;
+                case RiotPlatform.Vietnam:
+                    RegionName = "Vietnam";
+                    break;
             }
         }
 

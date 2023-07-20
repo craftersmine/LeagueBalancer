@@ -20,8 +20,22 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Margin="4" TextWrapping="Wrap" Foreground="{StaticResource LeagueTextColorDisabled}"
-                   Text="Made by craftersmine with ❤️ - App version 1.0.1-beta.&#10;This application was created under Riot Games' &quot;Legal Jibber Jabber&quot; policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project."/>
+        <Image Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2" Stretch="UniformToFill" Source="/BackgroundImg.png">
+            <Image.Effect>
+                <BlurEffect Radius="15"/>
+            </Image.Effect>
+        </Image>
+
+        <Rectangle Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2" Fill="{StaticResource LeagueWindowBackground}" Opacity="0.5"/>
+
+        <TextBlock Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Margin="4" TextWrapping="Wrap" Foreground="{StaticResource LeagueTextColorDisabled}">
+            Made by craftersmine with ❤️ - App version 1.1.1-beta. - 
+            <Hyperlink NavigateUri="https://github.com/craftersmine/LeagueBalancer" RequestNavigate="OnBottomLinkClick">🔗GitHub Page</Hyperlink> - 
+            <Hyperlink NavigateUri="https://github.com/craftersmine/LeagueBalancer/issues/new?assignees=&amp;labels=bug&amp;projects=&amp;template=bug_report.md&amp;title=%5BBUG%5D+Bug+report" RequestNavigate="OnBottomLinkClick">🔗Report a Bug</Hyperlink> - 
+            <Hyperlink NavigateUri="https://github.com/craftersmine/LeagueBalancer/issues/new?assignees=&amp;labels=enhancement&amp;projects=&amp;template=feature_request.md&amp;title=" RequestNavigate="OnBottomLinkClick">🔗Request a feature</Hyperlink>
+            <LineBreak/>
+            This application was created under Riot Games' &quot;Legal Jibber Jabber&quot; policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.
+        </TextBlock>
 
         <Grid Grid.Column="0" Grid.Row="0">
             <Grid.RowDefinitions>
@@ -31,7 +45,7 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="120"/>
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
@@ -45,9 +59,9 @@
                         <Path Stroke="{StaticResource LeagueButtonTextColorDefault}" SnapsToDevicePixels="True"
                               Width="16" Height="16" StrokeThickness="2"
                               Data="M 4 5 L 2 5 2 14 11 14 11 12"/>
-                        <Path Stroke="{StaticResource LeagueButtonTextColorDefault}" SnapsToDevicePixels="True"
+                        <Path  SnapsToDevicePixels="True"
                               Width="16" Height="16" Fill="{StaticResource LeagueButtonTextColorDefault}"
-                              Data="M 6 3 L 6 10 L 12 10 L 9 8 L 13 4 L 12 3 L 8 6 L 6 3"/>
+                              Data="M 6 4 L 6 10 L 12 10 L 10 8 L 14 4 L 12 2 L 8 6 L 6 4"/>
                     </Grid>
                 </Button>
             </Grid>
@@ -63,6 +77,10 @@
                     <Path Width="16" Height="16" Stroke="{StaticResource LeagueButtonTextColorDefault}" SnapsToDevicePixels="True" StrokeThickness="2"
                           Data="M 4 4 L 12 12 M 12 4 L 4 12">
                     </Path>
+                </Button>
+                <Button Width="32" Height="32" Margin="4" Click="OnClearListClick">
+                    <Path Width="16" Height="16" Stroke="{StaticResource LeagueButtonTextColorDefault}" SnapsToDevicePixels="True" ToolTip="Clear Players" StrokeThickness="1.5"
+                          Data="M 3 4 L 12 4 M 3 7 L 12 7 M 3 10 L 8 10 M 10 10 L 14 14 M 10 14 L 14 10"/>
                 </Button>
             </StackPanel>
 
@@ -196,7 +214,7 @@
                             <ColumnDefinition/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Margin="4" x:Name="RandomizeInfoButton" Height="32" Content="Get Randomized Summoner Champions" Click="OnRandomizeInfoClick" IsEnabled="False" ToolTip="Roll champions for every player"/>
+                        <Button Grid.Column="0" Margin="4" x:Name="RandomizeInfoButton" Height="32" Content="Get Randomized Champions For All" Click="OnRandomizeInfoClick" IsEnabled="False" ToolTip="Roll champions for every player"/>
                         <Button Grid.Column="1" Margin="4" x:Name="RerollChampionButton" Height="32" Content="Reroll Summoner Champions" Click="OnRerollChampionInfoClick" IsEnabled="False" ToolTip="Reroll champions for selected player"/>
                         <Button Grid.Column="2" Margin="4" Width="32" x:Name="CopyChampionsToClipboard" Click="CopyChampionsToClipboardClick" IsEnabled="False" ToolTip="Copy all players characters into clipboard">
                             <Grid>
@@ -221,22 +239,29 @@
             <leagueuicontrols:Spinner Grid.Row="0" Grid.RowSpan="2" x:Name="RandomizedInfoSpinner" Visibility="Hidden"/>
 
             <Grid Grid.Row="1" x:Name="PlayerAdditionalInfoContainer" Margin="4">
-                <ListView x:Name="SelectedSummonerChampions">
+                <ListView x:Name="SelectedSummonerChampions" SelectionChanged="OnBalancedSummonersListSelectionChanged">
                     <ListView.ItemTemplate>
                         <DataTemplate DataType="{x:Type local:LeagueChampion}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="70"/>
-                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <Border Grid.Column="0" Width="64" Height="64" BorderBrush="{StaticResource LeagueUserPictureImageBorderDefault}" BorderThickness="2" CornerRadius="32">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Width="64" Height="64" BorderBrush="{StaticResource LeagueUserPictureImageBorderDefault}" BorderThickness="2" CornerRadius="32">
                                     <Ellipse>
                                         <Ellipse.Fill>
                                             <ImageBrush ImageSource="{Binding  Icon}"/>
                                         </Ellipse.Fill>
                                     </Ellipse>
                                 </Border>
-                                <TextBlock Grid.Column="1" VerticalAlignment="Center" Margin="8" Style="{StaticResource LeagueSubHeaderText}" Text="{Binding Champion.Name}"/>
+                                <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="8" Style="{StaticResource LeagueSubHeaderText}" Text="{Binding Champion.Name}"/>
+                                <TextBlock Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="8" Style="{StaticResource LeagueDefaultText}" Foreground="{StaticResource LeagueTextColorDisabled}" Text="{Binding MasteryPoints, StringFormat={}{0} mastery points}"/>
+                                <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="8" Style="{StaticResource LeagueDefaultText}" Foreground="{StaticResource LeagueTextColorDisabled}" Text="{Binding Weight, StringFormat={}({0:F2} %)}"/>
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
