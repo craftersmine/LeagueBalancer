@@ -21,8 +21,7 @@ namespace craftersmine.LeagueBalancer
         {
             List<Summoner> blueTeam = new List<Summoner>();
             List<Summoner> redTeam = new List<Summoner>();
-
-            int averageLp = (int)summoners.Average(s => s.LeaguePointsAmount);
+            
             int blueTeamLp = 0;
             int redTeamLp = 0;
 
