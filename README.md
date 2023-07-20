@@ -26,10 +26,10 @@ Application preview:
 * Then select desired player in participants list
 
 ## Champion randomizer weights
-| Champion    | Weight formula                                                                            |
-|-------------|-------------------------------------------------------------------------------------------|
-| Main / OTP  | `0.3 * 0.95 = ~0.285`                                                                     |
-| Has mastery | `(1 - (ChampionMastery / MainMastery)) * 0.95 = 1 - (2000000 / 10000000) * 0.95  = ~0.76` | 
-| Others      | `1 - 0.002 = ~0.998`                                                                      |
+| Champion    | Weight formula                                                                              |
+|-------------|---------------------------------------------------------------------------------------------|
+| Main / OTP  | `0.6 * 0.95 = ~0.57`                                                                        |
+| Has mastery | `(1 - (ChampionMastery / MainMastery)) * 0.95 = (1 - (2000000 / 10000000)) * 0.95  = ~0.76` | 
+| Others      | `1 - 0.05 = ~0.95`                                                                          |
 
 ###### This project was created under Riot Games' ["Legal Jibber Jabber"](https://www.riotgames.com/en/legal) policy using assets owned by [Riot Games](https://www.riotgames.com). [Riot Games](https://www.riotgames.com) does not endorse or sponsor this project.
