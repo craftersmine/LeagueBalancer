@@ -1,13 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using System.Threading.Tasks;
 
 using craftersmine.League.CommunityDragon;
-using craftersmine.Riot.Api.Common;
 using craftersmine.Riot.Api.League.Mastery;
+using craftersmine.Riot.Api.League.SummonerLeagues;
 
 namespace craftersmine.LeagueBalancer
 {
