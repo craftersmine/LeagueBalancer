@@ -1,13 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using System.Threading.Tasks;
 
 using craftersmine.League.CommunityDragon;
-using craftersmine.Riot.Api.Common;
 using craftersmine.Riot.Api.League.Mastery;
+using craftersmine.Riot.Api.League.SummonerLeagues;
 
 namespace craftersmine.LeagueBalancer
 {
@@ -22,11 +20,16 @@ namespace craftersmine.LeagueBalancer
             List<Summoner> blueTeam = new List<Summoner>();
             List<Summoner> redTeam = new List<Summoner>();
 
-            int averageLp = (int)summoners.Average(s => s.LeaguePointsAmount);
             int blueTeamLp = 0;
             int redTeamLp = 0;
 
+            int blueTeamLevel = 0;
+            int redTeamLevel = 0;
+
             List<Summoner> orderedSummoners = summoners.OrderBy(s => s.LeaguePointsAmount).ToList();
+            List<Summoner> unrankedSummoners =
+                orderedSummoners.Where(s => s.SummonerLeague is null || s.SummonerLeague?.Tier == LeagueRankedTier.Unranked).OrderBy(s => s.SummonerInfo.SummonerLevel).ToList();
+            orderedSummoners.RemoveAll(s => s.SummonerLeague is null || s.SummonerLeague?.Tier == LeagueRankedTier.Unranked);
 
             while (orderedSummoners.Any())
             {
@@ -43,6 +46,24 @@ namespace craftersmine.LeagueBalancer
                     redTeam.Add(summoner);
                     orderedSummoners.Remove(summoner);
                     redTeamLp += summoner.LeaguePointsAmount;
+                }
+            }
+
+            while (unrankedSummoners.Any())
+            {
+                Summoner summoner = unrankedSummoners.MaxBy(s => s.SummonerInfo.SummonerLevel);
+
+                if (blueTeamLevel < redTeamLevel && blueTeam.Count < 5)
+                {
+                    blueTeam.Add(summoner);
+                    unrankedSummoners.Remove(summoner);
+                    blueTeamLevel += (int)summoner.SummonerInfo.SummonerLevel;
+                }
+                else
+                {
+                    redTeam.Add(summoner);
+                    unrankedSummoners.Remove(summoner);
+                    redTeamLevel += (int)summoner.SummonerInfo.SummonerLevel;
                 }
             }
 
