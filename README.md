@@ -1,6 +1,6 @@
 # craftersmine.LeagueBalancer
 
-League of Legends closed-game balancer and champion randomizer
+League of Legends closed-game (custom game) balancer and champion randomizer
 
 [![Created under Riot Legal Jibber Jabber](https://img.shields.io/badge/created_under-Riot_Legal_Jibber_Jabber-red?logo=riot-games)](https://www.riotgames.com/en/legal)
 [![GitHub License](https://img.shields.io/github/license/craftersmine/LeagueBalancer)](https://github.com/craftersmine/LeagueBalancer/tree/master/LICENSE)
