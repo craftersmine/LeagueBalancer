@@ -40,6 +40,8 @@ namespace craftersmine.LeagueBalancer
         public const string ChatMainFormat = "Rolled champions:\r\n{0}";
         public const string ChatSummonerFormat = "  {0}: {1}";
 
+        public static UpdateChecker UpdateChecker = new UpdateChecker();
+
         public int BlueTeamLp
         {
             get => _blueTeamLp;
@@ -67,6 +69,15 @@ namespace craftersmine.LeagueBalancer
             {
                 Regions.Add(new LeagueRegion(region));
             }
+
+            UpdateChecker.NewVersionReleased += UpdateChecker_NewVersionReleased;
+            UpdateChecker.CheckVersion();
+        }
+
+        private void UpdateChecker_NewVersionReleased(object? sender, NewVersionReleasedEventArgs e)
+        {
+            UpdateAvailableLink.NavigateUri = new Uri(e.ReleaseUrl);
+            UpdateAvailableLinkText.Visibility = Visibility.Visible;
         }
 
         private void OnAddClick(object sender, RoutedEventArgs e)
