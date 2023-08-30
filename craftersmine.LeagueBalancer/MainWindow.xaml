@@ -29,7 +29,7 @@
         <Rectangle Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2" Fill="{StaticResource LeagueWindowBackground}" Opacity="0.5"/>
 
         <TextBlock Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Margin="4" TextWrapping="Wrap" Foreground="{StaticResource LeagueTextColorDisabled}">
-            Made by craftersmine with ❤️ - App version 1.1.2-beta. - 
+            Made by craftersmine with ❤️ - App version 1.1.3. <Hyperlink RequestNavigate="OnBottomLinkClick" x:Name="UpdateAvailableLink" Foreground="{StaticResource LeagueTextColorOnline}"><TextBlock Visibility="Collapsed" x:Name="UpdateAvailableLinkText">🔄️ Update Available!</TextBlock></Hyperlink> - 
             <Hyperlink NavigateUri="https://github.com/craftersmine/LeagueBalancer" RequestNavigate="OnBottomLinkClick">🔗GitHub Page</Hyperlink> - 
             <Hyperlink NavigateUri="https://github.com/craftersmine/LeagueBalancer/issues/new?assignees=&amp;labels=bug&amp;projects=&amp;template=bug_report.md&amp;title=%5BBUG%5D+Bug+report" RequestNavigate="OnBottomLinkClick">🔗Report a Bug</Hyperlink> - 
             <Hyperlink NavigateUri="https://github.com/craftersmine/LeagueBalancer/issues/new?assignees=&amp;labels=enhancement&amp;projects=&amp;template=feature_request.md&amp;title=" RequestNavigate="OnBottomLinkClick">🔗Request a feature</Hyperlink>
@@ -235,11 +235,17 @@
                 </StackPanel>
             </Grid>
 
-            <TextBlock x:Name="SelectPlayerTip" Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Select player in players list to generate champions"/>
-            <leagueuicontrols:Spinner Grid.Row="0" Grid.RowSpan="2" x:Name="RandomizedInfoSpinner" Visibility="Hidden"/>
-
             <Grid Grid.Row="1" x:Name="PlayerAdditionalInfoContainer" Margin="4">
-                <ListView x:Name="SelectedSummonerChampions" SelectionChanged="OnBalancedSummonersListSelectionChanged">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+
+                <TextBlock x:Name="SelectPlayerTip" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Select player in players list to generate champions"/>
+                <leagueuicontrols:Spinner Grid.Row="0" x:Name="RandomizedInfoSpinner" Visibility="Hidden"/>
+
+                <ListView Grid.Row="0" x:Name="SelectedSummonerChampions" SelectionChanged="OnBalancedSummonersListSelectionChanged">
                     <ListView.ItemTemplate>
                         <DataTemplate DataType="{x:Type local:LeagueChampion}">
                             <Grid>
@@ -266,6 +272,10 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                <StackPanel Grid.Row="1">
+                    <TextBox Grid.Row="1" Height="250" x:Name="ChampPreviewTextBox" Margin="0 0 0 8" Visibility="Collapsed"/>
+                    <Button x:Name="OpenHideChampPreview" Content="Open/Hide Champions List in text form" Height="24" Click="OpenHideChampPreviewClick" SnapsToDevicePixels="True"/>
+                </StackPanel>
             </Grid>
         </Grid>
     </Grid>

@@ -40,6 +40,8 @@ namespace craftersmine.LeagueBalancer
         public const string ChatMainFormat = "Rolled champions:\r\n{0}";
         public const string ChatSummonerFormat = "  {0}: {1}";
 
+        public static UpdateChecker UpdateChecker = new UpdateChecker();
+
         public int BlueTeamLp
         {
             get => _blueTeamLp;
@@ -67,6 +69,15 @@ namespace craftersmine.LeagueBalancer
             {
                 Regions.Add(new LeagueRegion(region));
             }
+
+            UpdateChecker.NewVersionReleased += UpdateChecker_NewVersionReleased;
+            UpdateChecker.CheckVersion();
+        }
+
+        private void UpdateChecker_NewVersionReleased(object? sender, NewVersionReleasedEventArgs e)
+        {
+            UpdateAvailableLink.NavigateUri = new Uri(e.ReleaseUrl);
+            UpdateAvailableLinkText.Visibility = Visibility.Visible;
         }
 
         private void OnAddClick(object sender, RoutedEventArgs e)
@@ -266,6 +277,8 @@ namespace craftersmine.LeagueBalancer
                     Champions.Add(summoner, champions);
                 }
 
+                ChampPreviewTextBox.Text = GenerateChampList();
+
                 RandomizedInfoSpinner.Visibility = Visibility.Hidden;
                 CopyChampionsToClipboard.IsEnabled = true;
                 SelectPlayerTip.Visibility = Visibility.Visible;
@@ -309,6 +322,8 @@ namespace craftersmine.LeagueBalancer
                     Champions[summoner] = champions;
                     SelectedSummonerChampions.ItemsSource = Champions[summoner];
                     SummonersListBox.SelectedItem = summoner;
+                    
+                    ChampPreviewTextBox.Text = GenerateChampList();
                     RandomizedInfoSpinner.Visibility = Visibility.Hidden;
                     SelectedSummonerChampions.Visibility = Visibility.Visible;
                     CopyChampionsToClipboard.IsEnabled = true;
@@ -371,16 +386,11 @@ namespace craftersmine.LeagueBalancer
                 if (!string.IsNullOrWhiteSpace(possibleSummoners[i]))
                     AddSummoner(possibleSummoners[i]);
 
-            //foreach (string s in summoners)
-            //{
-            //    AddSummoner(s);
-            //}
-
             Cursor = Cursors.Arrow;
             IsEnabled = true;
         }
 
-        private void CopyChampionsToClipboardClick(object sender, RoutedEventArgs e)
+        private string GenerateChampList()
         {
             List<string> summoners = new List<string>();
             foreach (var champion in Champions)
@@ -392,7 +402,12 @@ namespace craftersmine.LeagueBalancer
             }
 
             string message = string.Format(ChatMainFormat, string.Join(Environment.NewLine, summoners));
-            Clipboard.SetText(message);
+            return message;
+        }
+
+        private void CopyChampionsToClipboardClick(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetText(GenerateChampList());
         }
 
         private void OnBottomLinkClick(object sender, RequestNavigateEventArgs e)
@@ -412,6 +427,11 @@ namespace craftersmine.LeagueBalancer
             RandomizeInfoButton.IsEnabled = false;
             RerollChampionButton.IsEnabled = false;
             CopyChampionsToClipboard.IsEnabled = false;
+        }
+
+        private void OpenHideChampPreviewClick(object sender, RoutedEventArgs e)
+        {
+            ChampPreviewTextBox.Visibility = ChampPreviewTextBox.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
         }
     }
 }
