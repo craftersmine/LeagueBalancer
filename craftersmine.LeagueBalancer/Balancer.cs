@@ -53,7 +53,7 @@ namespace craftersmine.LeagueBalancer
             {
                 Summoner summoner = unrankedSummoners.MaxBy(s => s.SummonerInfo.SummonerLevel);
 
-                if (blueTeamLevel < redTeamLevel && blueTeam.Count < 5)
+                if (blueTeamLevel <= redTeamLevel && blueTeam.Count < 5)
                 {
                     blueTeam.Add(summoner);
                     unrankedSummoners.Remove(summoner);
