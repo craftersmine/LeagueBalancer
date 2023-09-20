@@ -6,11 +6,17 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <Company>craftersmine</Company>
-    <Version>1.1.4</Version>
+    <Version>1.1.5</Version>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <IsPublishable>False</IsPublishable>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="BackgroundImg.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Icon.ico" />
   </ItemGroup>
 
   <ItemGroup>
