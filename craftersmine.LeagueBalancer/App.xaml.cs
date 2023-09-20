@@ -16,7 +16,7 @@ namespace craftersmine.LeagueBalancer
 {
     public partial class App : Application
     {
-        public static readonly Version CurrentVersion = new Version(1, 1, 4);
+        public static readonly Version CurrentVersion = new Version(1, 1, 5);
 
         public static RiotApiClientSettings ClientSettings { get; private set; }
 
