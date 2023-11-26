@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <Company>craftersmine</Company>
-    <Version>1.1.5</Version>
+    <Version>1.1.6</Version>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
     <IsPublishable>False</IsPublishable>
   </PropertyGroup>
@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <PackageReference Include="craftersmine.League.CommunityDragon" Version="0.3.2-dev" />
+    <PackageReference Include="craftersmine.Riot.Api.Account" Version="0.2.1-dev" />
     <PackageReference Include="craftersmine.Riot.Api.League.Mastery" Version="0.2.1-dev" />
     <PackageReference Include="craftersmine.Riot.Api.League.SummonerLeagues" Version="0.2.1-dev" />
     <PackageReference Include="craftersmine.Ui.League" Version="1.1.4" />
