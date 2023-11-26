@@ -17,7 +17,7 @@ namespace craftersmine.LeagueBalancer
 {
     public partial class App : Application
     {
-        public static readonly Version CurrentVersion = new Version(1, 1, 5);
+        public static readonly Version CurrentVersionPredefined = new Version(1, 1, 5);
 
         public static RiotApiClientSettings ClientSettings { get; private set; }
 
@@ -27,6 +27,8 @@ namespace craftersmine.LeagueBalancer
         public static RiotAccountApiClient RiotAccountApiClient { get; private set; }
 
         public static CommunityDragon CommunityDragonClient { get; private set; }
+
+        public static Version CurrentVersion => System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
 
         protected override void OnStartup(StartupEventArgs e)
         {
