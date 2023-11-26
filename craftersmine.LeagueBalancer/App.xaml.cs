@@ -7,6 +7,7 @@ using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Windows;
 using craftersmine.League.CommunityDragon;
+using craftersmine.Riot.Api.Account;
 using craftersmine.Riot.Api.Common;
 using craftersmine.Riot.Api.League.Mastery;
 using craftersmine.Riot.Api.League.Summoner;
@@ -23,6 +24,7 @@ namespace craftersmine.LeagueBalancer
         public static LeagueSummonerApiClient SummonerApiClient { get; private set; }
         public static LeagueSummonerLeaguesApiClient SummonerLeaguesApiClient { get; private set; }
         public static LeagueMasteryApiClient MasteryApiClient { get; private set; }
+        public static RiotAccountApiClient RiotAccountApiClient { get; private set; }
 
         public static CommunityDragon CommunityDragonClient { get; private set; }
 
@@ -38,6 +40,7 @@ namespace craftersmine.LeagueBalancer
             SummonerApiClient = new LeagueSummonerApiClient(ClientSettings);
             SummonerLeaguesApiClient = new LeagueSummonerLeaguesApiClient(ClientSettings);
             MasteryApiClient = new LeagueMasteryApiClient(ClientSettings);
+            RiotAccountApiClient = new RiotAccountApiClient(ClientSettings);
 
             CommunityDragonClient = new CommunityDragon(VersionAlias.Latest, LeagueLocales.English);
 

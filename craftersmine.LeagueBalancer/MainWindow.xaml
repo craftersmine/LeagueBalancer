@@ -100,7 +100,11 @@
                             </Grid.RowDefinitions>
                             <leagueuicontrols:UserPicture Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" ImageSource="{Binding Icon}"/>
                             <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Margin="10 2 0 0">
-                                <TextBlock Text="{Binding SummonerInfo.Name}" VerticalAlignment="Center"/>
+                                <TextBlock VerticalAlignment="Center">
+                                    <Run Text="{Binding RiotId}"/>
+                                    <Run Text="#"/>
+                                    <Run Text="{Binding TagLine}"/>
+                                </TextBlock>
                                 <TextBlock Text="{Binding Region.RegionName}" VerticalAlignment="Center" Margin="8 0 0 0" Style="{StaticResource LeagueOfflineText}" FontSize="10pt"/>
                                 <TextBlock Text="Lvl:" VerticalAlignment="Center" Margin="8 0 0 0" Style="{StaticResource LeagueOfflineText}" FontSize="10pt"/>
                                 <TextBlock Text="{Binding SummonerInfo.SummonerLevel}" VerticalAlignment="Center" Margin="4 0 0 0" Style="{StaticResource LeagueOfflineText}" FontSize="10pt"/>

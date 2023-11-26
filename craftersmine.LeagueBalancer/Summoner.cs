@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-
+using craftersmine.Riot.Api.Account;
 using craftersmine.Riot.Api.Common;
 using craftersmine.Riot.Api.League.Summoner;
 using craftersmine.Riot.Api.League.SummonerLeagues;
@@ -22,6 +22,8 @@ namespace craftersmine.LeagueBalancer
         private SummonerLeague _summonerLeague;
         private string _summonerLeagueString;
         private int _lpAmount;
+        private string _tagLine;
+        private string _riotId;
 
         public Uri IconUri
         {
@@ -85,6 +87,26 @@ namespace craftersmine.LeagueBalancer
             }
         }
 
+        public string TagLine
+        {
+            get => _tagLine;
+            set
+            {
+                _tagLine = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string RiotId
+        {
+            get => _riotId;
+            set
+            {
+                _riotId = value;
+                OnPropertyChanged();
+            }
+        }
+
         public Summoner(LeagueSummoner summoner, LeagueRegion region)
         {
             SummonerLeagueString = "Unranked (0 LP)";
@@ -143,6 +165,10 @@ namespace craftersmine.LeagueBalancer
 
             IconUri = new Uri(AppCache.Instance.Icons[SummonerInfo.ProfileIconId].GetAssetUri());
             Icon = new BitmapImage(IconUri);
+
+            RiotAccount account = await App.RiotAccountApiClient.GetAccountByPuuidAsync(SummonerInfo.RiotPuuid);
+            TagLine = account.RiotIdTag;
+            RiotId = account.RiotId;
         }
 
         public static int CalculateLpValue(LeagueRankedTier tier, LeagueDivisionRank division, int currentLp)
