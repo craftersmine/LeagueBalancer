@@ -20,6 +20,7 @@ namespace craftersmine.LeagueBalancer
         private ImageSource _iconSource;
         private LeagueSummoner _leagueSummoner;
         private SummonerLeague _summonerLeague;
+        private RiotAccount _account;
         private string _summonerLeagueString;
         private int _lpAmount;
         private string _tagLine;
@@ -55,6 +56,16 @@ namespace craftersmine.LeagueBalancer
             }
         }
 
+        public RiotAccount RiotAccount
+        {
+            get => _account;
+            set
+            {
+                _account = value;
+                OnPropertyChanged(nameof(RiotAccount));
+            }
+        }
+
         public SummonerLeague? SummonerLeague
         {
             get => _summonerLeague;
@@ -87,32 +98,13 @@ namespace craftersmine.LeagueBalancer
             }
         }
 
-        public string TagLine
-        {
-            get => _tagLine;
-            set
-            {
-                _tagLine = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string RiotId
-        {
-            get => _riotId;
-            set
-            {
-                _riotId = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public Summoner(LeagueSummoner summoner, LeagueRegion region)
+        public Summoner(LeagueSummoner summoner, LeagueRegion region, RiotAccount account)
         {
             SummonerLeagueString = "Unranked (0 LP)";
             LeaguePointsAmount = 0;
             SummonerInfo = summoner;
             Region = region;
+            RiotAccount = account;
             Initialize();
         }
 
@@ -165,10 +157,6 @@ namespace craftersmine.LeagueBalancer
 
             IconUri = new Uri(AppCache.Instance.Icons[SummonerInfo.ProfileIconId].GetAssetUri());
             Icon = new BitmapImage(IconUri);
-
-            RiotAccount account = await App.RiotAccountApiClient.GetAccountByPuuidAsync(SummonerInfo.RiotPuuid);
-            TagLine = account.RiotIdTag;
-            RiotId = account.RiotId;
         }
 
         public static int CalculateLpValue(LeagueRankedTier tier, LeagueDivisionRank division, int currentLp)
