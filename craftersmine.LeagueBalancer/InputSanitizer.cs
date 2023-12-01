@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace craftersmine.LeagueBalancer
 {
     public class InputSanitizer
     {
-        public static readonly string[] PossibleLobbyMessages =
+        public static readonly Regex[] PossibleLobbyMessages =
         {
-            " присоединился к лобби",
-            " joined the lobby",
+            new Regex("(?<riotIdName>.*) #(?<riotIdTag>.*) присоединился к лобби"),
+            new Regex("(?<riotIdName>.*) #(?<riotIdTag>.*) joined the lobby"),
         };
 
         public static readonly string[] LineEndings =
@@ -27,10 +28,16 @@ namespace craftersmine.LeagueBalancer
             List<string> possibleSummonerNames = new List<string>();
             foreach (string line in lines)
             {
-                foreach (string possibleMessage in PossibleLobbyMessages)
+                foreach (Regex possibleMessage in PossibleLobbyMessages)
                 {
-                    if (line.Contains(possibleMessage))
-                        possibleSummonerNames.Add(line.Replace(possibleMessage, ""));
+                    if (possibleMessage.IsMatch(line))
+                    {
+                        Match match = possibleMessage.Match(line);
+                        string riotId = match.Groups["riotIdName"].Value;
+                        string riotTag = match.Groups["riotIdTag"].Value;
+
+                        possibleSummonerNames.Add(riotId + "#" + riotTag);
+                    }
                 }
             }
             

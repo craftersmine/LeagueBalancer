@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using craftersmine.League.CommunityDragon;
+using craftersmine.Riot.Api.Account;
 using craftersmine.Riot.Api.Common;
 using craftersmine.Riot.Api.Common.Exceptions;
 using craftersmine.Riot.Api.League.Summoner;
@@ -82,30 +83,42 @@ namespace craftersmine.LeagueBalancer
 
         private void OnAddClick(object sender, RoutedEventArgs e)
         {
-            AddSummoner(SummonerNameTextBox.Text);
+            PerformAddSummoner(SummonerNameTextBox.Text);
         }
 
         private void OnSummonerNameTextBoxKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
-                AddSummoner(SummonerNameTextBox.Text);
+                PerformAddSummoner(SummonerNameTextBox.Text);
             }
         }
 
-        private async void AddSummoner(string summonerName)
+        private void PerformAddSummoner(string input)
         {
-            summonerName = summonerName.Trim();
+            string[] riotId = input.Split("#");
+            if (riotId.Length > 1)
+                AddSummoner(riotId[0], riotId[1]);
+            else
+                MessageBox.Show(
+                    "RiotID Tagline isn't specified! Specify correct RiotID in this format: username#tag", "Invalid RiotID", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private async void AddSummoner(string riotId, string riotTag)
+        {
+            riotId = riotId.Trim();
+            riotTag = riotTag.Trim();
 
             IsEnabled = false;
             Cursor = Cursors.Wait;
-            if (!string.IsNullOrWhiteSpace(summonerName) && Summoners.FirstOrDefault(s => s.SummonerInfo.Name == summonerName) is null &&
+            if (!string.IsNullOrWhiteSpace(riotId) && !string.IsNullOrWhiteSpace(riotTag) && Summoners.FirstOrDefault(s => s.RiotAccount.RiotId == riotId && s.RiotAccount.RiotIdTag == riotTag) is null &&
                 Summoners.Count < 10)
             {
                 try
                 {
-                    LeagueSummoner sum = await App.SummonerApiClient.GetSummonerByNameAsync((SelectedRegion.SelectedItem as LeagueRegion)!.Region, summonerName);
-                    Summoner summoner = new Summoner(sum, (SelectedRegion.SelectedItem as LeagueRegion)!);
+                    RiotAccount account = await App.RiotAccountApiClient.GetAccountByRiotIdAsync(riotId, riotTag);
+                    LeagueSummoner sum = await App.SummonerApiClient.GetSummonerByPuuidAsync((SelectedRegion.SelectedItem as LeagueRegion)!.Region, account.Puuid);
+                    Summoner summoner = new Summoner(sum, (SelectedRegion.SelectedItem as LeagueRegion)!, account);
                     Summoners.Add(summoner);
                     SummonerNameTextBox.Text = string.Empty;
                 }
@@ -116,7 +129,7 @@ namespace craftersmine.LeagueBalancer
                         switch (rae.ResponseCode)
                         {
                             case HttpResponseCode.NotFound:
-                                MessageBox.Show("Unable to player \"" + summonerName + "\" on " +
+                                MessageBox.Show("Unable to player \"" + riotId + "#" + riotTag + "\" on " +
                                                 (SelectedRegion.SelectedItem as LeagueRegion)!.RegionName + " server! Check if username is correct and selected right server.", "Unable to find player!", MessageBoxButton.OK, MessageBoxImage.Information);
                                 break;
                             case HttpResponseCode.Forbidden:
@@ -322,7 +335,7 @@ namespace craftersmine.LeagueBalancer
                     Champions[summoner] = champions;
                     SelectedSummonerChampions.ItemsSource = Champions[summoner];
                     SummonersListBox.SelectedItem = summoner;
-                    
+
                     ChampPreviewTextBox.Text = GenerateChampList();
                     RandomizedInfoSpinner.Visibility = Visibility.Hidden;
                     SelectedSummonerChampions.Visibility = Visibility.Visible;
@@ -366,7 +379,7 @@ namespace craftersmine.LeagueBalancer
                 Cursor = Cursors.Arrow;
                 return;
             }
-            
+
             string[] possibleSummoners = new string[10 - Summoners.Count];
 
             int count = 0;
@@ -378,13 +391,17 @@ namespace craftersmine.LeagueBalancer
                     possibleSummoners[count] = summoner;
                     count++;
                 }
-                if (count == 10 - Summoners.Count) 
+                if (count == 10 - Summoners.Count)
                     break;
             }
 
-            for (int i = 0;i < possibleSummoners.Length; i++)
+            for (int i = 0; i < possibleSummoners.Length; i++)
                 if (!string.IsNullOrWhiteSpace(possibleSummoners[i]))
-                    AddSummoner(possibleSummoners[i]);
+                {
+                    string[] data = possibleSummoners[i].Split("#");
+
+                    AddSummoner(data[0], data[1]);
+                }
 
             Cursor = Cursors.Arrow;
             IsEnabled = true;
@@ -398,7 +415,7 @@ namespace craftersmine.LeagueBalancer
                 string[] champNames = new string[champion.Value.Length];
                 for (int i = 0; i < champion.Value.Length; i++)
                     champNames[i] = champion.Value[i].Champion.Name;
-                summoners.Add(string.Format(ChatSummonerFormat, champion.Key.SummonerInfo.Name, string.Join(", ", champNames)));
+                summoners.Add(string.Format(ChatSummonerFormat, champion.Key.RiotAccount.RiotId + "#" + champion.Key.RiotAccount.RiotIdTag, string.Join(", ", champNames)));
             }
 
             string message = string.Format(ChatMainFormat, string.Join(Environment.NewLine, summoners));
