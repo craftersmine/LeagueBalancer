@@ -21,10 +21,11 @@ using craftersmine.Riot.Api.Account;
 using craftersmine.Riot.Api.Common;
 using craftersmine.Riot.Api.Common.Exceptions;
 using craftersmine.Riot.Api.League.Summoner;
+using craftersmine.Ui.League.Controls;
 
 namespace craftersmine.LeagueBalancer
 {
-    public partial class MainWindow : Window, INotifyPropertyChanged
+    public partial class MainWindow : LeagueWindow, INotifyPropertyChanged
     {
         private int _blueTeamLp = 0;
         private int _redTeamLp = 0;
