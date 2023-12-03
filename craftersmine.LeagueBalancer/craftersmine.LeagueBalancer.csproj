@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <Company>craftersmine</Company>
-    <Version>1.2.1</Version>
+    <Version>1.2.2</Version>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
     <IsPublishable>False</IsPublishable>
   </PropertyGroup>

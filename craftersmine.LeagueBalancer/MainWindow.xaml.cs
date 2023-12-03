@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -450,6 +451,12 @@ namespace craftersmine.LeagueBalancer
         private void OpenHideChampPreviewClick(object sender, RoutedEventArgs e)
         {
             ChampPreviewTextBox.Visibility = ChampPreviewTextBox.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        private void OnHelpRequested(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(new ProcessStartInfo("https://github.com/craftersmine/LeagueBalancer/wiki")
+                { UseShellExecute = true });
         }
     }
 }

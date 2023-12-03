@@ -12,13 +12,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using craftersmine.Ui.League.Controls;
 
 namespace craftersmine.LeagueBalancer
 {
-    /// <summary>
-    /// Логика взаимодействия для CrashHandlerWindow.xaml
-    /// </summary>
-    public partial class CrashHandlerWindow : Window
+    public partial class CrashHandlerWindow : LeagueWindow
     {
         public Exception Exception { get; private set; }
 
