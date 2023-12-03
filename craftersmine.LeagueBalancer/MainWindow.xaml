@@ -7,10 +7,22 @@
         xmlns:local="clr-namespace:craftersmine.LeagueBalancer"
         xmlns:leagueuicontrols="clr-namespace:craftersmine.Ui.League.Controls;assembly=craftersmine.Ui.League"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="League Closed-game Team Balancer and Champion Randomizer" Height="650" Width="1115" Style="{StaticResource LeagueMainWindowStyle}" MinHeight="650" MinWidth="1115" MaxWidth="1115" MaxHeight="650"
-        ResizeMode="CanMinimize">
+        Title="League Closed-game Team Balancer and Champion Randomizer" Height="720" Width="1150" Style="{StaticResource LeagueMainWindowStyle}" MinHeight="720" MinWidth="1150" MaxWidth="1150" MaxHeight="720"
+        ResizeMode="CanMinimize" IsHelpButtonVisible="True" HelpRequested="OnHelpRequested">
     <leagueuicontrols:LeagueWindow.Header>
-        <TextBlock Text="League of Legends Custom Game Team Balancer" Style="{StaticResource LeagueHeaderText}" VerticalAlignment="Center" Margin="24 0 0 0"/>
+        <Grid>
+            <TextBlock Text="League of Legends Custom Game Team Balancer" Style="{StaticResource LeagueHeaderText}" VerticalAlignment="Top" Margin="24 8 0 0"/>
+
+            <TextBlock Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" TextWrapping="Wrap" Margin="24 4 4 8" VerticalAlignment="Bottom" HorizontalAlignment="Left" Foreground="{StaticResource LeagueTextColorDisabled}" TextAlignment="Left">
+                Made by craftersmine with ❤️ - App version <TextBlock Text="{Binding Source={x:Static local:App.CurrentVersion}}"/>. <Hyperlink RequestNavigate="OnBottomLinkClick" x:Name="UpdateAvailableLink" Foreground="{StaticResource LeagueTextColorOnline}"><TextBlock Visibility="Collapsed" x:Name="UpdateAvailableLinkText">🔄️ Update Available!</TextBlock></Hyperlink> - 
+                <Hyperlink NavigateUri="https://github.com/craftersmine/LeagueBalancer" RequestNavigate="OnBottomLinkClick">🔗GitHub Page</Hyperlink> - 
+                <Hyperlink NavigateUri="https://github.com/craftersmine/LeagueBalancer/issues/new?assignees=&amp;labels=bug&amp;projects=&amp;template=bug_report.md&amp;title=%5BBUG%5D+Bug+report" RequestNavigate="OnBottomLinkClick">🔗Report a Bug</Hyperlink> - 
+                <Hyperlink NavigateUri="https://github.com/craftersmine/LeagueBalancer/issues/new?assignees=&amp;labels=enhancement&amp;projects=&amp;template=feature_request.md&amp;title=" RequestNavigate="OnBottomLinkClick">🔗Request a feature</Hyperlink>
+                <LineBreak/>
+                This application was created under Riot Games' &quot;Legal Jibber Jabber&quot; policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.
+            </TextBlock>
+        </Grid>
+        
     </leagueuicontrols:LeagueWindow.Header>
     <leagueuicontrols:LeagueWindow.Background>
         <VisualBrush>
@@ -26,8 +38,8 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300"/>
-            <ColumnDefinition Width="400"/>
-            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="425"/>
+            <ColumnDefinition Width="424"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -35,15 +47,6 @@
         </Grid.RowDefinitions>
 
         <Rectangle Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="2" Fill="{StaticResource LeagueWindowBackground}" Opacity="0.5"/>
-
-        <TextBlock Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Margin="4" TextWrapping="Wrap" Foreground="{StaticResource LeagueTextColorDisabled}">
-            Made by craftersmine with ❤️ - App version <TextBlock Text="{Binding Source={x:Static local:App.CurrentVersion}}"/>. <Hyperlink RequestNavigate="OnBottomLinkClick" x:Name="UpdateAvailableLink" Foreground="{StaticResource LeagueTextColorOnline}"><TextBlock Visibility="Collapsed" x:Name="UpdateAvailableLinkText">🔄️ Update Available!</TextBlock></Hyperlink> - 
-            <Hyperlink NavigateUri="https://github.com/craftersmine/LeagueBalancer" RequestNavigate="OnBottomLinkClick">🔗GitHub Page</Hyperlink> - 
-            <Hyperlink NavigateUri="https://github.com/craftersmine/LeagueBalancer/issues/new?assignees=&amp;labels=bug&amp;projects=&amp;template=bug_report.md&amp;title=%5BBUG%5D+Bug+report" RequestNavigate="OnBottomLinkClick">🔗Report a Bug</Hyperlink> - 
-            <Hyperlink NavigateUri="https://github.com/craftersmine/LeagueBalancer/issues/new?assignees=&amp;labels=enhancement&amp;projects=&amp;template=feature_request.md&amp;title=" RequestNavigate="OnBottomLinkClick">🔗Request a feature</Hyperlink>
-            <LineBreak/>
-            This application was created under Riot Games' &quot;Legal Jibber Jabber&quot; policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.
-        </TextBlock>
 
         <Grid Grid.Column="0" Grid.Row="0">
             <Grid.RowDefinitions>
