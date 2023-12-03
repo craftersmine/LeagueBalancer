@@ -8,9 +8,13 @@ League of Legends closed-game (custom game) teams balancer and champion randomiz
 ![Discord](https://img.shields.io/badge/discord-@craftersmine-5865f2?logo=discord&logoColor=white)
 ![GitHub Repo stars](https://img.shields.io/github/stars/craftersmine/LeagueBalancer)
 ![Maintenance](https://img.shields.io/maintenance/yes/2023)
+[![GitHub Project Wiki](https://img.shields.io/badge/docs-github--wiki-brightgreen)](https://github.com/craftersmine/LeagueBalancer/wiki)
 
 Application preview:
 ![Controls Preview](https://raw.githubusercontent.com/craftersmine/LeagueBalancer/master/.github/ApplicationPreview.png)
+
+## Full guide:
+You can find full guide on how to install and use on [project wiki page](https://github.com/craftersmine/LeagueBalancer/wiki)
 
 ## Installation:
 * **THE APP REQUIRES .NET 6!** You can download it [here](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-6.0.20-windows-x64-installer)
