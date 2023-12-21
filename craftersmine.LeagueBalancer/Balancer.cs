@@ -82,7 +82,7 @@ namespace craftersmine.LeagueBalancer
                 AppCache.Instance.Champions = await App.CommunityDragonClient.GetChampionsAsync();
 
             LeagueChampionMastery[] masteries =
-                await App.MasteryApiClient.GetMasteriesBySummonerId(summoner.Region.Region, summoner.SummonerInfo.Id);
+                await App.MasteryApiClient.GetMasteriesByPuuid(summoner.Region.Region, summoner.SummonerInfo.RiotPuuid);
 
             LeagueChampionMastery maxMastery = masteries.MaxBy(m => m.MasteryPoints)!;
 
