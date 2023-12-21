@@ -141,6 +141,9 @@ namespace craftersmine.LeagueBalancer
                             case HttpResponseCode.RateLimitExceeded:
                                 MessageBox.Show("Unable to access Riot Games API due to being rate-limited! Try again after " + App.SummonerApiClient.RetryAfter?.ToString("g"), "Rate-limited!", MessageBoxButton.OK, MessageBoxImage.Warning);
                                 break;
+                            default:
+                                MessageBox.Show("Unable to access Riot Games API due to unknown error! " + rae.RiotApiResponse.Status.Message, "Failed!", MessageBoxButton.OK, MessageBoxImage.Error);
+                                break;
                         }
                     }
 
@@ -312,6 +315,9 @@ namespace craftersmine.LeagueBalancer
                         case HttpResponseCode.RateLimitExceeded:
                             MessageBox.Show("Unable to access Riot Games API due to being rate-limited! Try again after " + App.SummonerApiClient.RetryAfter?.ToString("g"), "Rate-limited!", MessageBoxButton.OK, MessageBoxImage.Warning);
                             break;
+                        default:
+                            MessageBox.Show("Unable to access Riot Games API due to unknown error! " + rae.RiotApiResponse.Status.Message, "Failed!", MessageBoxButton.OK, MessageBoxImage.Error);
+                            break;
                     }
                 }
                 RandomizedInfoSpinner.Visibility = Visibility.Hidden;
@@ -356,6 +362,9 @@ namespace craftersmine.LeagueBalancer
                                 break;
                             case HttpResponseCode.RateLimitExceeded:
                                 MessageBox.Show("Unable to access Riot Games API due to being rate-limited! Try again after " + App.SummonerApiClient.RetryAfter?.ToString("g"), "Rate-limited!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                break;
+                            default:
+                                MessageBox.Show("Unable to access Riot Games API due to unknown error! " + rae.RiotApiResponse.Status.Message, "Failed!", MessageBoxButton.OK, MessageBoxImage.Error);
                                 break;
                         }
                     }
