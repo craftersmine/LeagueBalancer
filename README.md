@@ -7,7 +7,7 @@ League of Legends closed-game (custom game) teams balancer and champion randomiz
 [![GitHub Releases](https://img.shields.io/github/downloads/craftersmine/LeagueBalancer/total?label=github%20downloads&logo=github)](https://github.com/craftersmine/LeagueBalancer/releases)
 ![Discord](https://img.shields.io/badge/discord-@craftersmine-5865f2?logo=discord&logoColor=white)
 ![GitHub Repo stars](https://img.shields.io/github/stars/craftersmine/LeagueBalancer)
-![Maintenance](https://img.shields.io/maintenance/yes/2023)
+![Maintenance](https://img.shields.io/maintenance/yes/2025)
 [![GitHub Project Wiki](https://img.shields.io/badge/docs-github--wiki-brightgreen)](https://github.com/craftersmine/LeagueBalancer/wiki)
 
 Application preview:
