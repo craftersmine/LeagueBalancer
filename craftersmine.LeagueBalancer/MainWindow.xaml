@@ -6,20 +6,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:craftersmine.LeagueBalancer"
         xmlns:leagueuicontrols="clr-namespace:craftersmine.Ui.League.Controls;assembly=craftersmine.Ui.League"
+        xmlns:localization="clr-namespace:craftersmine.LeagueBalancer.Localization"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="League Closed-game Team Balancer and Champion Randomizer" Height="720" Width="1150" Style="{StaticResource LeagueMainWindowStyle}" MinHeight="720" MinWidth="1150" MaxWidth="1150" MaxHeight="720"
+        Title="{x:Static localization:Locale.MainWindow_Title}" x:Uid="MainWindow" Height="720" Width="1150" Style="{StaticResource LeagueMainWindowStyle}" MinHeight="720" MinWidth="1150" MaxWidth="1150" MaxHeight="720"
         ResizeMode="CanMinimize" IsHelpButtonVisible="True" HelpRequested="OnHelpRequested">
     <leagueuicontrols:LeagueWindow.Header>
         <Grid>
-            <TextBlock Text="League of Legends Custom Game Team Balancer" Style="{StaticResource LeagueHeaderText}" VerticalAlignment="Top" Margin="24 8 0 0"/>
+            <TextBlock Text="{x:Static localization:Locale.MainWindow_Title}" Style="{StaticResource LeagueHeaderText}" VerticalAlignment="Top" Margin="24 8 0 0"/>
 
             <TextBlock Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" TextWrapping="Wrap" Margin="24 4 4 8" VerticalAlignment="Bottom" HorizontalAlignment="Left" Foreground="{StaticResource LeagueTextColorDisabled}" TextAlignment="Left">
-                Made by craftersmine with ❤️ - App version <TextBlock Text="{Binding Source={x:Static local:App.CurrentVersion}}"/>. <Hyperlink RequestNavigate="OnBottomLinkClick" x:Name="UpdateAvailableLink" Foreground="{StaticResource LeagueTextColorOnline}"><TextBlock Visibility="Collapsed" x:Name="UpdateAvailableLinkText">🔄️ Update Available!</TextBlock></Hyperlink> - 
-                <Hyperlink NavigateUri="https://github.com/craftersmine/LeagueBalancer" RequestNavigate="OnBottomLinkClick">🔗GitHub Page</Hyperlink> - 
-                <Hyperlink NavigateUri="https://github.com/craftersmine/LeagueBalancer/issues/new?assignees=&amp;labels=bug&amp;projects=&amp;template=bug_report.md&amp;title=%5BBUG%5D+Bug+report" RequestNavigate="OnBottomLinkClick">🔗Report a Bug</Hyperlink> - 
-                <Hyperlink NavigateUri="https://github.com/craftersmine/LeagueBalancer/issues/new?assignees=&amp;labels=enhancement&amp;projects=&amp;template=feature_request.md&amp;title=" RequestNavigate="OnBottomLinkClick">🔗Request a feature</Hyperlink>
+                <Run Text="{x:Static localization:Locale.MainWindow_Copyright}"/> <TextBlock Text="{Binding Source={x:Static local:App.CurrentVersion}}"/>. <Hyperlink RequestNavigate="OnBottomLinkClick" x:Name="UpdateAvailableLink" Foreground="{StaticResource LeagueTextColorOnline}"><TextBlock Visibility="Collapsed" x:Name="UpdateAvailableLinkText" Text="{x:Static localization:Locale.MainWindow_Links_UpdateAvailable}"/></Hyperlink> - 
+                <Hyperlink NavigateUri="https://github.com/craftersmine/LeagueBalancer" RequestNavigate="OnBottomLinkClick"><Run Text="{x:Static localization:Locale.MainWindow_Links_GitHub}"/></Hyperlink> - 
+                <Hyperlink NavigateUri="https://github.com/craftersmine/LeagueBalancer/issues/new?assignees=&amp;labels=bug&amp;projects=&amp;template=bug_report.md&amp;title=%5BBUG%5D+Bug+report" RequestNavigate="OnBottomLinkClick"><Run Text="{x:Static localization:Locale.MainWindow_Links_BugReport}"/></Hyperlink> - 
+                <Hyperlink NavigateUri="https://github.com/craftersmine/LeagueBalancer/issues/new?assignees=&amp;labels=enhancement&amp;projects=&amp;template=feature_request.md&amp;title=" RequestNavigate="OnBottomLinkClick"><Run Text="{x:Static localization:Locale.MainWindow_Links_RequestFeature}"/></Hyperlink>
                 <LineBreak/>
-                This application was created under Riot Games' &quot;Legal Jibber Jabber&quot; policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.
+                <Run Text="{x:Static localization:Locale.MainWindow_Disclaimer}"/>
             </TextBlock>
         </Grid>
         
@@ -64,8 +65,8 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="40"/>
                 </Grid.ColumnDefinitions>
-                <ComboBox Grid.Column="0" x:Name="SelectedRegion" Margin="4" ItemsSource="{Binding ElementName=Wnd, Path=Regions}" SelectedIndex="0" ToolTip="Select a player region"/>
-                <Button Grid.Column="1" Margin="4" Click="ImportSummonersFromClipBoardClick" ToolTip="Import players from lobby chat">
+                <ComboBox Grid.Column="0" x:Name="SelectedRegion" Margin="4" ItemsSource="{Binding ElementName=Wnd, Path=Regions}" SelectedIndex="0" ToolTip="{x:Static localization:Locale.MainWindow_ComboBox_Region_ToolTip}"/>
+                <Button Grid.Column="1" Margin="4" Click="ImportSummonersFromClipBoardClick" ToolTip="{x:Static localization:Locale.MainWindow_Buttons_ImportFromClipboard_ToolTip}">
                     <Grid Width="16" Height="16">
                         <Path Stroke="{StaticResource LeagueButtonTextColorDefault}" SnapsToDevicePixels="True"
                               Width="16" Height="16" StrokeThickness="2"
@@ -77,20 +78,20 @@
                 </Button>
             </Grid>
 
-            <TextBox x:Name="SummonerNameTextBox" Grid.Column="0" Grid.Row="1" Margin="4" KeyDown="OnSummonerNameTextBoxKeyDown" ToolTip="Summoner name"/>
+            <TextBox x:Name="SummonerNameTextBox" Grid.Column="0" Grid.Row="1" Margin="4" KeyDown="OnSummonerNameTextBoxKeyDown" ToolTip="{x:Static localization:Locale.MainWindow_TextBox_RiotId_ToolTip}"/>
             <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
-                <Button x:Name="AddSummonerButton" Margin="4" SnapsToDevicePixels="True" Click="OnAddClick" Width="32" Height="32" ToolTip="Add Player">
+                <Button x:Name="AddSummonerButton" Margin="4" SnapsToDevicePixels="True" Click="OnAddClick" Width="32" Height="32" ToolTip="{x:Static localization:Locale.MainWindow_Buttons_AddSummoner_ToolTip}">
                     <Path Width="16" Height="16" Stroke="{StaticResource LeagueButtonTextColorDefault}" SnapsToDevicePixels="True" StrokeThickness="2"
                           Data="M 8 3 L 8 13 M 3 8 L 13 8">
                     </Path>
                 </Button>
-                <Button x:Name="RemoveSummonerButton" Margin="4" SnapsToDevicePixels="True" Click="OnRemoveClick" Width="32" Height="32" ToolTip="Remove Player" IsEnabled="False">
+                <Button x:Name="RemoveSummonerButton" Margin="4" SnapsToDevicePixels="True" Click="OnRemoveClick" Width="32" Height="32" ToolTip="{x:Static localization:Locale.MainWindow_Buttons_RemoveSummoner_ToolTip}" IsEnabled="False">
                     <Path Width="16" Height="16" Stroke="{StaticResource LeagueButtonTextColorDefault}" SnapsToDevicePixels="True" StrokeThickness="2"
                           Data="M 4 4 L 12 12 M 12 4 L 4 12">
                     </Path>
                 </Button>
-                <Button Width="32" Height="32" Margin="4" Click="OnClearListClick">
-                    <Path Width="16" Height="16" Stroke="{StaticResource LeagueButtonTextColorDefault}" SnapsToDevicePixels="True" ToolTip="Clear Players" StrokeThickness="1.5"
+                <Button Width="32" Height="32" Margin="4" Click="OnClearListClick" ToolTip="{x:Static localization:Locale.MainWindow_Buttons_ClearSummonersList_ToolTip}">
+                    <Path Width="16" Height="16" Stroke="{StaticResource LeagueButtonTextColorDefault}" SnapsToDevicePixels="True" StrokeThickness="1.5"
                           Data="M 3 4 L 12 4 M 3 7 L 12 7 M 3 10 L 8 10 M 10 10 L 14 14 M 10 14 L 14 10"/>
                 </Button>
             </StackPanel>
@@ -116,12 +117,12 @@
                                     <Run Text="#"/>
                                     <Run Text="{Binding RiotAccount.RiotIdTag, Mode=OneWay}"/>
                                 </TextBlock>
-                                <TextBlock Text="{Binding Region.RegionName}" VerticalAlignment="Center" Margin="8 0 0 0" Style="{StaticResource LeagueOfflineText}" FontSize="10pt"/>
-                                <TextBlock Text="Lvl:" VerticalAlignment="Center" Margin="8 0 0 0" Style="{StaticResource LeagueOfflineText}" FontSize="10pt"/>
-                                <TextBlock Text="{Binding SummonerInfo.SummonerLevel}" VerticalAlignment="Center" Margin="4 0 0 0" Style="{StaticResource LeagueOfflineText}" FontSize="10pt"/>
+                                <TextBlock Text="{Binding Region.RegionName}" VerticalAlignment="Center" Margin="8 0 0 0" Style="{StaticResource LeagueOfflineText}" FontSize="8pt"/>
+                                <TextBlock Text="{x:Static localization:Locale.MainWindow_List_Summoners_Label_Level}" VerticalAlignment="Center" Margin="8 0 0 0" Style="{StaticResource LeagueOfflineText}" FontSize="10pt"/>
+                                <TextBlock Text="{Binding SummonerInfo.SummonerLevel}" VerticalAlignment="Center" Margin="4 0 0 0" Style="{StaticResource LeagueOfflineText}" FontSize="8pt"/>
                             </StackPanel>
                             <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="10 2 0 0">
-                                <TextBlock Text="Rank:" VerticalAlignment="Center"/>
+                                <TextBlock Text="{x:Static localization:Locale.MainWindow_List_Summoners_Label_Rank}" VerticalAlignment="Center"/>
                                 <TextBlock Text="{Binding SummonerLeagueString}" VerticalAlignment="Center" Margin="4 0 0 0" />
                             </StackPanel>
                         </Grid>
@@ -141,7 +142,7 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="BalanceButton" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="4" Style="{StaticResource LeagueButtonThickBorder}" Content="BALANCE" Click="OnBalanceClick" IsEnabled="False" ToolTip="Balance teams by LP"/>
+                <Button x:Name="BalanceButton" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="4" Style="{StaticResource LeagueButtonThickBorder}" Content="{x:Static localization:Locale.MainWindow_Buttons_Balance}" Click="OnBalanceClick" IsEnabled="False" ToolTip="{x:Static localization:Locale.MainWindow_Buttons_Balance_ToolTip}"/>
                 <leagueuicontrols:Spinner Visibility="Hidden" Grid.Row="1" Grid.Column="1" x:Name="TeamSpinner"/>
                 <TextBlock Grid.Column="1" Grid.Row="1" Text="vs." VerticalAlignment="Center" HorizontalAlignment="Center" Style="{StaticResource LeagueHeaderText}"/>
                 <Grid Grid.Column="0" Grid.Row="1">
@@ -150,7 +151,7 @@
                         <RowDefinition Height="16"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <TextBlock Text="Blue Team" Grid.Row="0" Style="{StaticResource LeagueSubHeaderText}" HorizontalAlignment="Center" Foreground="DodgerBlue"/>
+                    <TextBlock Text="{x:Static localization:Locale.MainWindow_Label_BlueTeam}" Grid.Row="0" Style="{StaticResource LeagueSubHeaderText}" HorizontalAlignment="Center" Foreground="DodgerBlue"/>
                     <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <TextBlock Text="{Binding ElementName=Wnd, Path=BlueTeamLp}" Grid.Row="1"/>
                         <TextBlock Margin="4 0 0 0" Text="LP"/>
@@ -184,7 +185,7 @@
                         <RowDefinition Height="16"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <TextBlock Text="Red Team" Grid.Row="0" Style="{StaticResource LeagueSubHeaderText}" HorizontalAlignment="Center" Foreground="DarkRed"/>
+                    <TextBlock Text="{x:Static localization:Locale.MainWindow_Label_RedTeam}" Grid.Row="0" Style="{StaticResource LeagueSubHeaderText}" HorizontalAlignment="Center" Foreground="DarkRed"/>
                     <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <TextBlock Text="{Binding ElementName=Wnd, Path=RedTeamLp}" Grid.Row="1"/>
                         <TextBlock Margin="4 0 0 0" Text="LP"/>
@@ -229,9 +230,9 @@
                             <ColumnDefinition/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Margin="4" x:Name="RandomizeInfoButton" Height="32" Content="Get Randomized Champions For All" Click="OnRandomizeInfoClick" IsEnabled="False" ToolTip="Roll champions for every player"/>
-                        <Button Grid.Column="1" Margin="4" x:Name="RerollChampionButton" Height="32" Content="Reroll Summoner Champions" Click="OnRerollChampionInfoClick" IsEnabled="False" ToolTip="Reroll champions for selected player"/>
-                        <Button Grid.Column="2" Margin="4" Width="32" x:Name="CopyChampionsToClipboard" Click="CopyChampionsToClipboardClick" IsEnabled="False" ToolTip="Copy all players characters into clipboard">
+                        <Button Grid.Column="0" Margin="4" x:Name="RandomizeInfoButton" Height="32" Content="{x:Static localization:Locale.MainWindow_Buttons_GetRandomCharacters}" Click="OnRandomizeInfoClick" IsEnabled="False" ToolTip="{x:Static localization:Locale.MainWindow_Buttons_GetRandomCharacters_ToolTip}"/>
+                        <Button Grid.Column="1" Margin="4" x:Name="RerollChampionButton" Height="32" Content="{x:Static localization:Locale.MainWindow_Buttons_RerollSummonerCharacters}" Click="OnRerollChampionInfoClick" IsEnabled="False" ToolTip="{x:Static localization:Locale.MainWindow_Buttons_RerollSummonerCharacters_ToolTip}"/>
+                        <Button Grid.Column="2" Margin="4" Width="32" x:Name="CopyChampionsToClipboard" Click="CopyChampionsToClipboardClick" IsEnabled="False" ToolTip="{x:Static localization:Locale.MainWindow_Buttons_CopySummonersListToClipboard_ToolTip}">
                             <Grid>
                                 <Path Stroke="{StaticResource LeagueButtonTextColorDefault}" SnapsToDevicePixels="True"
                                               Width="16" Height="16" StrokeThickness="2"
@@ -243,10 +244,10 @@
                         </Button>
                     </Grid>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="4">
-                        <TextBlock Text="Available Pool:"/>
+                        <TextBlock Text="{x:Static localization:Locale.MainWindow_Label_AvailableCharacterPool}"/>
                         <TextBlock Text="{Binding ElementName=AvailablePoolSlider, Path=Value}" Margin="4 0 0 0"/>
                     </StackPanel>
-                    <Slider x:Name="AvailablePoolSlider" Minimum="1" Maximum="10" Value="3" TickFrequency="1" IsSnapToTickEnabled="True" Margin="4" ToolTip="Amount of characters to generate"/>
+                    <Slider x:Name="AvailablePoolSlider" Minimum="1" Maximum="10" Value="3" TickFrequency="1" IsSnapToTickEnabled="True" Margin="4" ToolTip="{x:Static localization:Locale.MainWindow_Slider_AvailableCharacterPoolSize_ToolTip}"/>
                 </StackPanel>
             </Grid>
 
@@ -257,7 +258,7 @@
                 </Grid.RowDefinitions>
 
 
-                <TextBlock x:Name="SelectPlayerTip" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Select player in players list to generate champions"/>
+                <TextBlock x:Name="SelectPlayerTip" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{x:Static localization:Locale.MainWindow_Label_ChampionsListTip}"/>
                 <leagueuicontrols:Spinner Grid.Row="0" x:Name="RandomizedInfoSpinner" Visibility="Hidden"/>
 
                 <ListView Grid.Row="0" x:Name="SelectedSummonerChampions" SelectionChanged="OnBalancedSummonersListSelectionChanged">
@@ -281,7 +282,10 @@
                                     </Ellipse>
                                 </Border>
                                 <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Margin="8" Style="{StaticResource LeagueSubHeaderText}" Text="{Binding Champion.Name}"/>
-                                <TextBlock Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="8" Style="{StaticResource LeagueDefaultText}" Foreground="{StaticResource LeagueTextColorDisabled}" Text="{Binding MasteryPoints, StringFormat={}{0} mastery points}"/>
+                                <TextBlock Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="8" Style="{StaticResource LeagueDefaultText}" Foreground="{StaticResource LeagueTextColorDisabled}">
+                                    <Run Text="{x:Static localization:Locale.MainWindow_List_Champions_Mastery}"/>
+                                    <Run Text="{Binding MasteryPoints, Mode=OneWay}"/>
+                                </TextBlock>
                                 <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="8" Style="{StaticResource LeagueDefaultText}" Foreground="{StaticResource LeagueTextColorDisabled}" Text="{Binding Weight, StringFormat={}({0:F2} %)}"/>
                             </Grid>
                         </DataTemplate>
@@ -289,7 +293,7 @@
                 </ListView>
                 <StackPanel Grid.Row="1">
                     <TextBox Grid.Row="1" Height="250" x:Name="ChampPreviewTextBox" Margin="0 0 0 8" Visibility="Collapsed"/>
-                    <Button x:Name="OpenHideChampPreview" Content="Open/Hide Champions List in text form" Height="24" Click="OpenHideChampPreviewClick" SnapsToDevicePixels="True"/>
+                    <Button x:Name="OpenHideChampPreview" Content="{x:Static localization:Locale.MainWindow_Buttons_OpenHideChampionsList}" ToolTip="{x:Static localization:Locale.MainWindow_Buttons_OpenHideChampionsList_ToolTip}" Height="24" Click="OpenHideChampPreviewClick" SnapsToDevicePixels="True"/>
                 </StackPanel>
             </Grid>
         </Grid>

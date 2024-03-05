@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using craftersmine.LeagueBalancer.Localization;
 using craftersmine.Riot.Api.Account;
 using craftersmine.Riot.Api.Common;
 using craftersmine.Riot.Api.League.Summoner;
@@ -100,7 +101,7 @@ namespace craftersmine.LeagueBalancer
 
         public Summoner(LeagueSummoner summoner, LeagueRegion region, RiotAccount account)
         {
-            SummonerLeagueString = "Unranked (0 LP)";
+            SummonerLeagueString = Locale.RankedTier_Unranked + " (0 LP)";
             LeaguePointsAmount = 0;
             SummonerInfo = summoner;
             Region = region;
@@ -132,21 +133,37 @@ namespace craftersmine.LeagueBalancer
                 switch (SummonerLeague.Tier)
                 {
                     case LeagueRankedTier.Iron:
+                        SummonerLeagueString = Locale.RankedTier_Iron + " " + SummonerLeague.DivisionRank.ToString() + " (" + LeaguePointsAmount + " LP)";
+                        break;
                     case LeagueRankedTier.Bronze:
+                        SummonerLeagueString = Locale.RankedTier_Bronze + " " + SummonerLeague.DivisionRank.ToString() + " (" + LeaguePointsAmount + " LP)";
+                        break;
                     case LeagueRankedTier.Silver:
+                        SummonerLeagueString = Locale.RankedTier_Silver + " " + SummonerLeague.DivisionRank.ToString() + " (" + LeaguePointsAmount + " LP)";
+                        break;
                     case LeagueRankedTier.Gold:
+                        SummonerLeagueString = Locale.RankedTier_Gold + " " + SummonerLeague.DivisionRank.ToString() + " (" + LeaguePointsAmount + " LP)";
+                        break;
                     case LeagueRankedTier.Platinum:
+                        SummonerLeagueString = Locale.RankedTier_Platinum + " " + SummonerLeague.DivisionRank.ToString() + " (" + LeaguePointsAmount + " LP)";
+                        break;
                     case LeagueRankedTier.Emerald:
+                        SummonerLeagueString = Locale.RankedTier_Emerald + " " + SummonerLeague.DivisionRank.ToString() + " (" + LeaguePointsAmount + " LP)";
+                        break;
                     case LeagueRankedTier.Diamond:
-                        SummonerLeagueString = SummonerLeague.Tier.ToString() + " " + SummonerLeague.DivisionRank.ToString() + " (" + LeaguePointsAmount + " LP)";
+                        SummonerLeagueString = Locale.RankedTier_Diamond + " " + SummonerLeague.DivisionRank.ToString() + " (" + LeaguePointsAmount + " LP)";
                         break;
                     case LeagueRankedTier.Master:
+                        SummonerLeagueString = Locale.RankedTier_Master + " (" + LeaguePointsAmount + " LP)";
+                        break;
                     case LeagueRankedTier.Grandmaster:
+                        SummonerLeagueString = Locale.RankedTier_Grandmaster + " (" + LeaguePointsAmount + " LP)";
+                        break;
                     case LeagueRankedTier.Challenger:
-                        SummonerLeagueString = SummonerLeague.Tier.ToString() + " (" + LeaguePointsAmount + " LP)";
+                        SummonerLeagueString = Locale.RankedTier_Challenger + " (" + LeaguePointsAmount + " LP)";
                         break;
                     default:
-                        SummonerLeagueString = LeagueRankedTier.Unranked.ToString();
+                        SummonerLeagueString = Locale.RankedTier_Unranked;
                         LeaguePointsAmount = 0;
                         break;
                 }

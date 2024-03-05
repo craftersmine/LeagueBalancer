@@ -1,0 +1,243 @@
+﻿<root>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>1.3</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="CrashHandlerWindow.Buttons.CopyToClipboard" xml:space="preserve">
+		<value>Скопировать инфо.</value>
+	</data>
+	<data name="CrashHandlerWindow.Buttons.OpenIssues" xml:space="preserve">
+		<value>Открыть GitHub Issues</value>
+	</data>
+	<data name="CrashHandlerWindow.Buuttons.CloseApp" xml:space="preserve">
+		<value>Закрыть приложение</value>
+	</data>
+	<data name="CrashHandlerWindow.Description" xml:space="preserve">
+		<value>Для того чтобы отладить и исправить проблему, откройте тикет на странице проекта GitHub. Пожалуйста, включите следующую информацию в текстовом формате.</value>
+	</data>
+	<data name="CrashHandlerWindow.Label.ExceptionMessage" xml:space="preserve">
+		<value>Сообщение исключения:</value>
+	</data>
+	<data name="CrashHandlerWindow.Label.ExceptionStacktrace" xml:space="preserve">
+		<value>Трассировка стека вызовов исключения:</value>
+	</data>
+	<data name="CrashHandlerWindow.Label.ExceptionType" xml:space="preserve">
+		<value>Тип исключения:</value>
+	</data>
+	<data name="CrashHandlerWindow.Title" xml:space="preserve">
+		<value>Возникла непредвиденая ошибка!</value>
+	</data>
+	<data name="MainWindow.Buttons.AddSummoner.ToolTip" xml:space="preserve">
+		<value>Добавить игрока</value>
+	</data>
+	<data name="MainWindow.Buttons.Balance" xml:space="preserve">
+		<value>СБАЛАНСИРОВАТЬ</value>
+	</data>
+	<data name="MainWindow.Buttons.Balance.ToolTip" xml:space="preserve">
+		<value>Сбалансировать команды по LP</value>
+	</data>
+	<data name="MainWindow.Buttons.ClearSummonersList.ToolTip" xml:space="preserve">
+		<value>Очистить список игроков</value>
+	</data>
+	<data name="MainWindow.Buttons.CopySummonersListToClipboard.ToolTip" xml:space="preserve">
+		<value>Скопировать всех игроков в буфер обмена</value>
+	</data>
+	<data name="MainWindow.Buttons.GetRandomCharacters" xml:space="preserve">
+		<value>Сгенерировать чемпионов для всех</value>
+	</data>
+	<data name="MainWindow.Buttons.GetRandomCharacters.ToolTip" xml:space="preserve">
+		<value>Сгенерировать чемпионов для каждого игрока в списке</value>
+	</data>
+	<data name="MainWindow.Buttons.ImportFromClipboard.ToolTip" xml:space="preserve">
+		<value>Импортировать игроков с чата лобби</value>
+	</data>
+	<data name="MainWindow.Buttons.OpenHideChampionsList" xml:space="preserve">
+		<value>Открыть/скрыть список чемпионов текстом</value>
+	</data>
+	<data name="MainWindow.Buttons.OpenHideChampionsList.ToolTip" xml:space="preserve">
+		<value>Открывает или скрывает список чемпионов в текстовой форме откуда вы можете скопировать текст</value>
+	</data>
+	<data name="MainWindow.Buttons.RemoveSummoner.ToolTip" xml:space="preserve">
+		<value>Удалить игрока</value>
+	</data>
+	<data name="MainWindow.Buttons.RerollSummonerCharacters" xml:space="preserve">
+		<value>Обновить чемпионов игрока</value>
+	</data>
+	<data name="MainWindow.Buttons.RerollSummonerCharacters.ToolTip" xml:space="preserve">
+		<value>Сгенерировать новых чемпионов для выбранного игрока</value>
+	</data>
+	<data name="MainWindow.ComboBox.Region.ToolTip" xml:space="preserve">
+		<value>Выберите регион аккаунта игрока</value>
+	</data>
+	<data name="MainWindow.Copyright" xml:space="preserve">
+		<value>Сделано craftersmine ❤️ - Версия приложения</value>
+	</data>
+	<data name="MainWindow.Disclaimer" xml:space="preserve">
+		<value>Это приложение создано под условиями Riot Games "Legal Jibber Jabber" используя ресурсы под владением Riot Games. Riot Games не поддерживает или/и не спонсирует данный проект.</value>
+	</data>
+	<data name="MainWindow.Label.AvailableCharacterPool" xml:space="preserve">
+		<value>Доступный пул:</value>
+	</data>
+	<data name="MainWindow.Label.BlueTeam" xml:space="preserve">
+		<value>Синяя команда</value>
+	</data>
+	<data name="MainWindow.Label.ChampionsListTip" xml:space="preserve">
+		<value>Выберите игрока в списке игроков чтобы сгенерировать чемпионов</value>
+	</data>
+	<data name="MainWindow.Label.RedTeam" xml:space="preserve">
+		<value>Красная команда</value>
+	</data>
+	<data name="MainWindow.Links.BugReport" xml:space="preserve">
+		<value>🔗 Сообщить об ошибке</value>
+	</data>
+	<data name="MainWindow.Links.GitHub" xml:space="preserve">
+		<value>🔗 Страница GitHub</value>
+	</data>
+	<data name="MainWindow.Links.RequestFeature" xml:space="preserve">
+		<value>🔗 Запросить фичу</value>
+	</data>
+	<data name="MainWindow.Links.UpdateAvailable" xml:space="preserve">
+		<value>🔄️ Доступно обновление</value>
+	</data>
+	<data name="MainWindow.Slider.AvailableCharacterPoolSize.ToolTip" xml:space="preserve">
+		<value>Количество чемпионов чтобы сгенерировать</value>
+	</data>
+	<data name="MainWindow.TextBox.RiotId.ToolTip" xml:space="preserve">
+		<value>Riot ID (например: craftersmine#Ornn)</value>
+	</data>
+	<data name="MainWindow.Title" xml:space="preserve">
+		<value>Балансировщик команд для своих игр League of Legends</value>
+	</data>
+	<data name="MainWindow.Message.BrokenApiKey.Content" xml:space="preserve">
+		<value>Не удалось получить доступ к Riot Games API в связи с проблемой с ключем API приложения! Свяжитесь с разработчиком приложения для решения данной проблемы!</value>
+	</data>
+	<data name="MainWindow.Message.BrokenApiKey.Title" xml:space="preserve">
+		<value>API ключ сломан или истек срок действия ключа!</value>
+	</data>
+	<data name="MainWindow.Message.InvalidRiotId.Content" xml:space="preserve">
+		<value>Не указан RiotID тэг! Укажите корректный RiotID в следующем формате: username#tag</value>
+	</data>
+	<data name="MainWindow.Message.InvalidRiotId.Title" xml:space="preserve">
+		<value>Неверный RiotID</value>
+	</data>
+	<data name="MainWindow.Message.RateLimited.Content" xml:space="preserve">
+		<value>Не удалось получить доступ к Riot Games API, поскольку вы сделали слишком много запросов за раз! Повторите попытку позднее через: {0}</value>
+	</data>
+	<data name="MainWindow.Message.RateLimited.Title" xml:space="preserve">
+		<value>Эй, эй, полегче!</value>
+	</data>
+	<data name="MainWindow.Message.UnableToFindPlayer.Content" xml:space="preserve">
+		<value>Не удалось найти игрока "{0}#{1}" на сервере "{2}"! Проверьте, корректный ли указан RiotID и выбран корректный сервер.</value>
+	</data>
+	<data name="MainWindow.Message.UnableToFindPlayer.Title" xml:space="preserve">
+		<value>Не удалось найти игрока!</value>
+	</data>
+	<data name="MainWindow.Message.UnknownError.Content" xml:space="preserve">
+		<value>Не удалось получить доступ к Riot Games API в связи с неизветсной ошибкой! {0}</value>
+	</data>
+	<data name="MainWindow.Message.UnknownError.Title" xml:space="preserve">
+		<value>Ошибка!</value>
+	</data>
+	<data name="MainWindow.String.RolledChampions" xml:space="preserve">
+		<value>Сгенерированные чемпионы:
+{0}</value>
+	</data>
+	<data name="RankedTier.Bronze" xml:space="preserve">
+		<value>Бронза</value>
+	</data>
+	<data name="RankedTier.Challenger" xml:space="preserve">
+		<value>Претендент</value>
+	</data>
+	<data name="RankedTier.Diamond" xml:space="preserve">
+		<value>Алмаз</value>
+	</data>
+	<data name="RankedTier.Emerald" xml:space="preserve">
+		<value>Изумруд</value>
+	</data>
+	<data name="RankedTier.Gold" xml:space="preserve">
+		<value>Золото</value>
+	</data>
+	<data name="RankedTier.Grandmaster" xml:space="preserve">
+		<value>Грандмастер</value>
+	</data>
+	<data name="RankedTier.Iron" xml:space="preserve">
+		<value>Железо</value>
+	</data>
+	<data name="RankedTier.Master" xml:space="preserve">
+		<value>Мастер</value>
+	</data>
+	<data name="RankedTier.Platinum" xml:space="preserve">
+		<value>Платина</value>
+	</data>
+	<data name="RankedTier.Silver" xml:space="preserve">
+		<value>Серебро</value>
+	</data>
+	<data name="RankedTier.Unranked" xml:space="preserve">
+		<value>Без ранга</value>
+	</data>
+	<data name="Region.Brazil" xml:space="preserve">
+		<value>Бразилия</value>
+	</data>
+	<data name="Region.EuropeNordicEast" xml:space="preserve">
+		<value>Северо-восточная Европа</value>
+	</data>
+	<data name="Region.EuropeWest" xml:space="preserve">
+		<value>Западная Европа</value>
+	</data>
+	<data name="Region.Japan" xml:space="preserve">
+		<value>Япония</value>
+	</data>
+	<data name="Region.Korea" xml:space="preserve">
+		<value>Корея</value>
+	</data>
+	<data name="Region.LatinAmericaNorth" xml:space="preserve">
+		<value>Северная Латинская Америка</value>
+	</data>
+	<data name="Region.LatinAmericaSouth" xml:space="preserve">
+		<value>Южная Латинская Америка</value>
+	</data>
+	<data name="Region.NorthAmerica" xml:space="preserve">
+		<value>Северная Америка</value>
+	</data>
+	<data name="Region.Oceania" xml:space="preserve">
+		<value>Океания</value>
+	</data>
+	<data name="Region.Philippines" xml:space="preserve">
+		<value>Филиппины</value>
+	</data>
+	<data name="Region.Russia" xml:space="preserve">
+		<value>Россия и СНГ</value>
+	</data>
+	<data name="Region.Singapore" xml:space="preserve">
+		<value>Сингапур</value>
+	</data>
+	<data name="Region.Taiwan" xml:space="preserve">
+		<value>Тайвань</value>
+	</data>
+	<data name="Region.Thailand" xml:space="preserve">
+		<value>Тайланд</value>
+	</data>
+	<data name="Region.Turkey" xml:space="preserve">
+		<value>Турция</value>
+	</data>
+	<data name="Region.Vietnam" xml:space="preserve">
+		<value>Вьетнам</value>
+	</data>
+	<data name="MainWindow.List.Summoners.Label.Rank" xml:space="preserve">
+		<value>Ранг:</value>
+	</data>
+	<data name="MainWindow.List.Champions.Mastery" xml:space="preserve">
+		<value>Мастерство:</value>
+	</data>
+	<data name="MainWindow.List.Summoners.Label.Level" xml:space="preserve">
+		<value>Ур.:</value>
+	</data>
+</root>

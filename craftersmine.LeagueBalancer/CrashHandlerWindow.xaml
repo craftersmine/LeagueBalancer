@@ -5,14 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:craftersmine.LeagueBalancer"
         xmlns:controls="clr-namespace:craftersmine.Ui.League.Controls;assembly=craftersmine.Ui.League"
+        xmlns:localization="clr-namespace:craftersmine.LeagueBalancer.Localization"
         mc:Ignorable="d"
-        Title="An application has crashed!" Height="425" Width="525" x:Name="Wnd" ResizeMode="NoResize"
+        Title="{x:Static localization:Locale.CrashHandlerWindow_Title}" Height="425" Width="525" x:Name="Wnd" ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         Style="{StaticResource LeagueMainWindowStyle}">
     <controls:LeagueWindow.Header>
         <StackPanel Grid.Row="0">
-            <TextBlock Margin="24 4 4 4" Text="Unfortunatelly, the application has crashed!" Style="{StaticResource LeagueHeaderText}" TextWrapping="Wrap"/>
-            <TextBlock Margin="24 4 4 4" Text="In order to debug and fix the problem, please open an issue at project GitHub page. Please include following information in text format." LineHeight="14" Style="{StaticResource LeagueDefaultText}" TextWrapping="Wrap"/>
+            <TextBlock Margin="24 4 4 4" Text="{x:Static localization:Locale.CrashHandlerWindow_Title}" Style="{StaticResource LeagueHeaderText}" TextWrapping="Wrap"/>
+            <TextBlock Margin="24 4 4 4" Text="{x:Static localization:Locale.CrashHandlerWindow_Description}" LineHeight="14" Style="{StaticResource LeagueDefaultText}" TextWrapping="Wrap"/>
         </StackPanel>
     </controls:LeagueWindow.Header>
     <Grid>
@@ -23,11 +24,11 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="1" Margin="8">
-            <TextBlock Text="Exception type:"/>
+            <TextBlock Text="{x:Static localization:Locale.CrashHandlerWindow_Label_ExceptionType}"/>
             <TextBox Margin="0 4 0 0" IsReadOnly="True" Text="{Binding ElementName=Wnd, Path=Type, Mode=OneWay}"/>
-            <TextBlock Text="Exception message:" Margin="0 4 0 0"/>
+            <TextBlock Text="{x:Static localization:Locale.CrashHandlerWindow_Label_ExceptionMessage}" Margin="0 4 0 0"/>
             <TextBox Margin="0 4 0 0" IsReadOnly="True" Text="{Binding ElementName=Wnd, Path=Message, Mode=OneWay}"/>
-            <TextBlock Text="Exception stacktrace:" Margin="0 4 0 0"/>
+            <TextBlock Text="{x:Static localization:Locale.CrashHandlerWindow_Label_ExceptionStacktrace}" Margin="0 4 0 0"/>
             <TextBox Margin="0 4 0 0" IsReadOnly="True" TextWrapping="NoWrap" AcceptsReturn="True" Text="{Binding ElementName=Wnd, Path=StackTrace, Mode=OneWay}" Height="150" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>
         </StackPanel>
 
@@ -39,9 +40,9 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="1" Content="Copy Info to Clipboard" Height="32" Width="150" Margin="0 0 8 0" Click="CopyInfoClick"/>
-            <Button Grid.Column="2" Content="Open GitHub Issues" Height="32" Width="150" Margin="0 0 8 0" Click="OpenGithubIssuesClick"/>
-            <Button Grid.Column="3" Height="32" Content="Close application" Width="120" Click="CloseAppClick"/>
+            <Button Grid.Column="1" Content="{x:Static localization:Locale.CrashHandlerWindow_Buttons_CopyToClipboard}" Height="32" Width="150" Margin="0 0 8 0" Click="CopyInfoClick"/>
+            <Button Grid.Column="2" Content="{x:Static localization:Locale.CrashHandlerWindow_Buttons_OpenIssues}" Height="32" Width="150" Margin="0 0 8 0" Click="OpenGithubIssuesClick"/>
+            <Button Grid.Column="3" Height="32" Content="{x:Static localization:Locale.CrashHandlerWindow_Buuttons_CloseApp}" Width="120" Click="CloseAppClick"/>
         </Grid>
     </Grid>
 </controls:LeagueWindow>
