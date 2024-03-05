@@ -20,15 +20,33 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="craftersmine.League.CommunityDragon" Version="0.3.2-dev" />
+    <PackageReference Include="craftersmine.League.CommunityDragon" Version="0.3.3-dev" />
     <PackageReference Include="craftersmine.Riot.Api.Account" Version="0.3.0-dev" />
     <PackageReference Include="craftersmine.Riot.Api.League.Mastery" Version="0.3.0-dev" />
     <PackageReference Include="craftersmine.Riot.Api.League.SummonerLeagues" Version="0.3.0-dev" />
-    <PackageReference Include="craftersmine.Ui.League" Version="1.3.0" />
+    <PackageReference Include="craftersmine.Ui.League" Version="1.3.1" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="BackgroundImg.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Localization\Locale.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Locale.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Localization\Locale.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Locale.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Localization\Locale.ru-ru.resx">
+      <DependentUpon>Locale.resx</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
