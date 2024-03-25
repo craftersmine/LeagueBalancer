@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>1.3</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CrashHandlerWindow.Buttons.CopyToClipboard" xml:space="preserve">
+		<value>Kopiera information</value>
+	</data>
+  <data name="CrashHandlerWindow.Buttons.OpenIssues" xml:space="preserve">
+		<value>Öppna GitHub Issues</value>
+	</data>
+  <data name="CrashHandlerWindow.Buuttons.CloseApp" xml:space="preserve">
+		<value>Stäng programmet</value>
+	</data>
+  <data name="CrashHandlerWindow.Description" xml:space="preserve">
+		<value>För att felsöka och åtgärda problemet, öppna ett problem på projekt GitHub-sidan. Vänligen inkludera följande information i textformat.</value>
+	</data>
+  <data name="CrashHandlerWindow.Label.ExceptionMessage" xml:space="preserve">
+		<value>Undantag meddelande:</value>
+	</data>
+  <data name="CrashHandlerWindow.Label.ExceptionStacktrace" xml:space="preserve">
+		<value>Undantag stacktrace:</value>
+	</data>
+  <data name="CrashHandlerWindow.Label.ExceptionType" xml:space="preserve">
+		<value>Undantag typ:</value>
+	</data>
+  <data name="CrashHandlerWindow.Title" xml:space="preserve">
+		<value>Tyvärr har applikationen kraschat!</value>
+	</data>
+  <data name="MainWindow.Buttons.AddSummoner.ToolTip" xml:space="preserve">
+		<value>Lägg till spelare</value>
+	</data>
+  <data name="MainWindow.Buttons.Balance" xml:space="preserve">
+		<value>BALANCERA</value>
+	</data>
+  <data name="MainWindow.Buttons.Balance.ToolTip" xml:space="preserve">
+		<value>Balansspelare efter LP</value>
+	</data>
+  <data name="MainWindow.Buttons.ClearSummonersList.ToolTip" xml:space="preserve">
+		<value>Rensa spelarlistan</value>
+	</data>
+  <data name="MainWindow.Buttons.CopySummonersListToClipboard.ToolTip" xml:space="preserve">
+		<value>Kopiera alla spelares karaktärer till urklipp</value>
+	</data>
+  <data name="MainWindow.Buttons.GetRandomCharacters" xml:space="preserve">
+		<value>Randomisera karaktärer för alla</value>
+	</data>
+  <data name="MainWindow.Buttons.GetRandomCharacters.ToolTip" xml:space="preserve">
+		<value>Randomizera karaktärer för värje spelare i listan</value>
+	</data>
+  <data name="MainWindow.Buttons.ImportFromClipboard.ToolTip" xml:space="preserve">
+		<value>Importera spelare från lobbychatt</value>
+	</data>
+  <data name="MainWindow.Buttons.OpenHideChampionsList" xml:space="preserve">
+		<value>Öppna/Dölj teckenlisten i textform</value>
+	</data>
+  <data name="MainWindow.Buttons.OpenHideChampionsList.ToolTip" xml:space="preserve">
+		<value>Öppnar eller döljer teckenlisten i textform som du kan kopiera</value>
+	</data>
+  <data name="MainWindow.Buttons.RemoveSummoner.ToolTip" xml:space="preserve">
+		<value>Ta bort spelaren</value>
+	</data>
+  <data name="MainWindow.Buttons.RerollSummonerCharacters" xml:space="preserve">
+		<value>Uppdatera spelarkaraktärerna</value>
+	</data>
+  <data name="MainWindow.Buttons.RerollSummonerCharacters.ToolTip" xml:space="preserve">
+		<value>Uppdatera karaktärer för vald spelare</value>
+	</data>
+  <data name="MainWindow.ComboBox.Region.ToolTip" xml:space="preserve">
+		<value>Välj en spelarregion</value>
+	</data>
+  <data name="MainWindow.Copyright" xml:space="preserve">
+		<value>Tillverkad av craftersmine med ❤️ - Appversion</value>
+	</data>
+  <data name="MainWindow.Disclaimer" xml:space="preserve">
+		<value>Denna applikation skapades under Riot Games "Legal Jibber Jabber"-policy med tillgångar som ägs av Riot Games. Riot Games stöder eller sponsrar inte detta projekt.</value>
+	</data>
+  <data name="MainWindow.Label.AvailableCharacterPool" xml:space="preserve">
+		<value>Tillgänglig pool:</value>
+	</data>
+  <data name="MainWindow.Label.BlueTeam" xml:space="preserve">
+		<value>Blå laget</value>
+	</data>
+  <data name="MainWindow.Label.ChampionsListTip" xml:space="preserve">
+		<value>Välj spelare i spelarlistan för att skapa karaktärer</value>
+	</data>
+  <data name="MainWindow.Label.RedTeam" xml:space="preserve">
+		<value>Röda laget</value>
+	</data>
+  <data name="MainWindow.Links.BugReport" xml:space="preserve">
+		<value>🔗 Rapportera en bugg</value>
+	</data>
+  <data name="MainWindow.Links.GitHub" xml:space="preserve">
+		<value>🔗 GitHub-sida</value>
+	</data>
+  <data name="MainWindow.Links.RequestFeature" xml:space="preserve">
+		<value>🔗 Begär en funktion</value>
+	</data>
+  <data name="MainWindow.Links.UpdateAvailable" xml:space="preserve">
+		<value>🔄️ Uppdatering tillgänglig</value>
+	</data>
+  <data name="MainWindow.List.Champions.Mastery" xml:space="preserve">
+		<value>Herravälde: </value>
+	</data>
+  <data name="MainWindow.List.Summoners.Label.Rank" xml:space="preserve">
+		<value>Rang:</value>
+	</data>
+  <data name="MainWindow.List.Summoners.Label.Level" xml:space="preserve">
+		<value>Lvl: </value>
+	</data>
+  <data name="MainWindow.Message.BrokenApiKey.Content" xml:space="preserve">
+		<value>Det går inte att komma åt Riot Games API på grund av problem med Application API-nyckeln! Kontakta apputvecklaren om detta fel!</value>
+	</data>
+  <data name="MainWindow.Message.BrokenApiKey.Title" xml:space="preserve">
+		<value>Förfallen eller trasig API-nyckel!</value>
+	</data>
+  <data name="MainWindow.Message.InvalidRiotId.Content" xml:space="preserve">
+		<value>RiotID Tagline är inte specificerad! Ange korrekt RiotID i detta format: användarnamn#tagg</value>
+	</data>
+  <data name="MainWindow.Message.InvalidRiotId.Title" xml:space="preserve">
+		<value>Ogiltigt RiotID</value>
+	</data>
+  <data name="MainWindow.Message.RateLimited.Content" xml:space="preserve">
+		<value>Det går inte att komma åt Riot Games API på grund av att det är hastighetsbegränsat! Försök igen efter {0}</value>
+	</data>
+  <data name="MainWindow.Message.RateLimited.Title" xml:space="preserve">
+		<value>Prisbegränsad!</value>
+	</data>
+  <data name="MainWindow.Message.UnableToFindPlayer.Content" xml:space="preserve">
+		<value>Det gick inte att spelaren hitta "{0}#{1}" på {2}-servern! Kontrollera om RiotID är korrekt och vald rätt server.</value>
+	</data>
+  <data name="MainWindow.Message.UnableToFindPlayer.Title" xml:space="preserve">
+		<value>Kan inte hitta spelare!</value>
+	</data>
+  <data name="MainWindow.Message.UnknownError.Content" xml:space="preserve">
+		<value>Det går inte att komma åt Riot Games API på grund av okänt fel! {0}</value>
+	</data>
+  <data name="MainWindow.Message.UnknownError.Title" xml:space="preserve">
+		<value>Misslyckades!</value>
+	</data>
+  <data name="MainWindow.Slider.AvailableCharacterPoolSize.ToolTip" xml:space="preserve">
+		<value>Antal tecken att generera</value>
+	</data>
+  <data name="MainWindow.String.RolledChampions" xml:space="preserve">
+		<value>Rullade mästare:
+{0}</value>
+	</data>
+  <data name="MainWindow.TextBox.RiotId.ToolTip" xml:space="preserve">
+		<value>Riot ID (typ: craftersmine#Ornn)</value>
+	</data>
+  <data name="MainWindow.Title" xml:space="preserve">
+		<value>League of Legends Custom Game Team Balancer</value>
+	</data>
+  <data name="RankedTier.Bronze" xml:space="preserve">
+		<value>Brons</value>
+	</data>
+  <data name="RankedTier.Challenger" xml:space="preserve">
+		<value>Utmanare</value>
+	</data>
+  <data name="RankedTier.Diamond" xml:space="preserve">
+		<value>Diamant</value>
+	</data>
+  <data name="RankedTier.Emerald" xml:space="preserve">
+		<value>Smaragd</value>
+	</data>
+  <data name="RankedTier.Gold" xml:space="preserve">
+		<value>Guld</value>
+	</data>
+  <data name="RankedTier.Grandmaster" xml:space="preserve">
+		<value>Stromästare</value>
+	</data>
+  <data name="RankedTier.Iron" xml:space="preserve">
+		<value>Järn</value>
+	</data>
+  <data name="RankedTier.Master" xml:space="preserve">
+		<value>Bemästra</value>
+	</data>
+  <data name="RankedTier.Platinum" xml:space="preserve">
+		<value>Platina</value>
+	</data>
+  <data name="RankedTier.Silver" xml:space="preserve">
+		<value>Silver</value>
+	</data>
+  <data name="RankedTier.Unranked" xml:space="preserve">
+		<value>Orankad</value>
+	</data>
+  <data name="Region.Brazil" xml:space="preserve">
+    <value>Brasilien</value>
+  </data>
+  <data name="Region.EuropeNordicEast" xml:space="preserve">
+    <value>Nordöstra Europa</value>
+  </data>
+  <data name="Region.EuropeWest" xml:space="preserve">
+    <value>Västra Europa</value>
+  </data>
+  <data name="Region.Japan" xml:space="preserve">
+    <value>Japan</value>
+  </data>
+  <data name="Region.Korea" xml:space="preserve">
+    <value>Korea</value>
+  </data>
+  <data name="Region.LatinAmericaNorth" xml:space="preserve">
+    <value>Latinamerika Norr</value>
+  </data>
+  <data name="Region.LatinAmericaSouth" xml:space="preserve">
+    <value>Latinamerika Syd</value>
+  </data>
+  <data name="Region.NorthAmerica" xml:space="preserve">
+    <value>Nordamerika</value>
+  </data>
+  <data name="Region.Oceania" xml:space="preserve">
+    <value>Oceanien</value>
+  </data>
+  <data name="Region.Philippines" xml:space="preserve">
+    <value>Filippinerna</value>
+  </data>
+  <data name="Region.Russia" xml:space="preserve">
+    <value>Ryssland och OSS</value>
+  </data>
+  <data name="Region.Singapore" xml:space="preserve">
+    <value>Singapore</value>
+  </data>
+  <data name="Region.Taiwan" xml:space="preserve">
+    <value>Taiwan</value>
+  </data>
+  <data name="Region.Thailand" xml:space="preserve">
+    <value>Thailand</value>
+  </data>
+  <data name="Region.Turkey" xml:space="preserve">
+    <value>Kalkon</value>
+  </data>
+  <data name="Region.Vietnam" xml:space="preserve">
+    <value>Vietnam</value>
+  </data>
+  <data name="SettingsWindow.Buttons.Ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="SettingsWindow.Label.Language" xml:space="preserve">
+    <value>Applikationsspråk:</value>
+  </data>
+  <data name="SettingsWindow.Title" xml:space="preserve">
+    <value>Inställningar</value>
+  </data>
+</root>

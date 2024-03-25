@@ -18,6 +18,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using craftersmine.League.CommunityDragon;
+using craftersmine.LeagueBalancer.Localization;
 using craftersmine.Riot.Api.Account;
 using craftersmine.Riot.Api.Common;
 using craftersmine.Riot.Api.Common.Exceptions;
@@ -103,7 +104,7 @@ namespace craftersmine.LeagueBalancer
                 AddSummoner(riotId[0], riotId[1]);
             else
                 MessageBox.Show(
-                    "RiotID Tagline isn't specified! Specify correct RiotID in this format: username#tag", "Invalid RiotID", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Locale.MainWindow_Message_InvalidRiotId_Content, Locale.MainWindow_Message_InvalidRiotId_Title, MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private async void AddSummoner(string riotId, string riotTag)
@@ -131,18 +132,17 @@ namespace craftersmine.LeagueBalancer
                         switch (rae.ResponseCode)
                         {
                             case HttpResponseCode.NotFound:
-                                MessageBox.Show("Unable to player \"" + riotId + "#" + riotTag + "\" on " +
-                                                (SelectedRegion.SelectedItem as LeagueRegion)!.RegionName + " server! Check if username is correct and selected right server.", "Unable to find player!", MessageBoxButton.OK, MessageBoxImage.Information);
+                                MessageBox.Show(string.Format(Locale.MainWindow_Message_UnableToFindPlayer_Content, riotId, riotTag, (SelectedRegion.SelectedItem as LeagueRegion)!.RegionName), Locale.MainWindow_Message_UnableToFindPlayer_Title, MessageBoxButton.OK, MessageBoxImage.Information);
                                 break;
                             case HttpResponseCode.Forbidden:
                             case HttpResponseCode.Unauthorized:
-                                MessageBox.Show("Unable to access Riot Games API due to issue with Application API key! Contact app developer about this error!", "Expired or broken API key!", MessageBoxButton.OK, MessageBoxImage.Error);
+                                MessageBox.Show(Locale.MainWindow_Message_BrokenApiKey_Content, Locale.MainWindow_Message_BrokenApiKey_Title, MessageBoxButton.OK, MessageBoxImage.Error);
                                 break;
                             case HttpResponseCode.RateLimitExceeded:
-                                MessageBox.Show("Unable to access Riot Games API due to being rate-limited! Try again after " + App.SummonerApiClient.RetryAfter?.ToString("g"), "Rate-limited!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                MessageBox.Show(string.Format(Locale.MainWindow_Message_RateLimited_Content, App.SummonerApiClient.RetryAfter?.ToString("g")), Locale.MainWindow_Message_RateLimited_Title, MessageBoxButton.OK, MessageBoxImage.Warning);
                                 break;
                             default:
-                                MessageBox.Show("Unable to access Riot Games API due to unknown error! " + rae.RiotApiResponse.Status.Message, "Failed!", MessageBoxButton.OK, MessageBoxImage.Error);
+                                MessageBox.Show(string.Format(Locale.MainWindow_Message_UnknownError_Content, rae.RiotApiResponse.Status.Message), Locale.MainWindow_Message_UnknownError_Title, MessageBoxButton.OK, MessageBoxImage.Error);
                                 break;
                         }
                     }
@@ -310,13 +310,13 @@ namespace craftersmine.LeagueBalancer
                     {
                         case HttpResponseCode.Forbidden:
                         case HttpResponseCode.Unauthorized:
-                            MessageBox.Show("Unable to access Riot Games API due to issue with Application API key! Contact app developer about this error!", "Expired or broken API key!", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(Locale.MainWindow_Message_BrokenApiKey_Content, Locale.MainWindow_Message_BrokenApiKey_Title, MessageBoxButton.OK, MessageBoxImage.Error);
                             break;
                         case HttpResponseCode.RateLimitExceeded:
-                            MessageBox.Show("Unable to access Riot Games API due to being rate-limited! Try again after " + App.SummonerApiClient.RetryAfter?.ToString("g"), "Rate-limited!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            MessageBox.Show(string.Format(Locale.MainWindow_Message_RateLimited_Content, App.SummonerApiClient.RetryAfter?.ToString("g")), Locale.MainWindow_Message_RateLimited_Title, MessageBoxButton.OK, MessageBoxImage.Warning);
                             break;
                         default:
-                            MessageBox.Show("Unable to access Riot Games API due to unknown error! " + rae.RiotApiResponse.Status.Message, "Failed!", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(string.Format(Locale.MainWindow_Message_UnknownError_Content, rae.RiotApiResponse.Status.Message), Locale.MainWindow_Message_UnknownError_Title, MessageBoxButton.OK, MessageBoxImage.Error);
                             break;
                     }
                 }
@@ -358,13 +358,13 @@ namespace craftersmine.LeagueBalancer
                         {
                             case HttpResponseCode.Forbidden:
                             case HttpResponseCode.Unauthorized:
-                                MessageBox.Show("Unable to access Riot Games API due to issue with Application API key! Contact app developer about this error!", "Expired or broken API key!", MessageBoxButton.OK, MessageBoxImage.Error);
+                                MessageBox.Show(Locale.MainWindow_Message_BrokenApiKey_Content, Locale.MainWindow_Message_BrokenApiKey_Title, MessageBoxButton.OK, MessageBoxImage.Error);
                                 break;
                             case HttpResponseCode.RateLimitExceeded:
-                                MessageBox.Show("Unable to access Riot Games API due to being rate-limited! Try again after " + App.SummonerApiClient.RetryAfter?.ToString("g"), "Rate-limited!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                MessageBox.Show(string.Format(Locale.MainWindow_Message_RateLimited_Content, App.SummonerApiClient.RetryAfter?.ToString("g")), Locale.MainWindow_Message_RateLimited_Title, MessageBoxButton.OK, MessageBoxImage.Warning);
                                 break;
                             default:
-                                MessageBox.Show("Unable to access Riot Games API due to unknown error! " + rae.RiotApiResponse.Status.Message, "Failed!", MessageBoxButton.OK, MessageBoxImage.Error);
+                                MessageBox.Show(string.Format(Locale.MainWindow_Message_UnknownError_Content, rae.RiotApiResponse.Status.Message), Locale.MainWindow_Message_UnknownError_Title, MessageBoxButton.OK, MessageBoxImage.Error);
                                 break;
                         }
                     }
@@ -429,7 +429,7 @@ namespace craftersmine.LeagueBalancer
                 summoners.Add(string.Format(ChatSummonerFormat, champion.Key.RiotAccount.RiotId + "#" + champion.Key.RiotAccount.RiotIdTag, string.Join(", ", champNames)));
             }
 
-            string message = string.Format(ChatMainFormat, string.Join(Environment.NewLine, summoners));
+            string message = string.Format(Locale.MainWindow_String_RolledChampions, string.Join(Environment.NewLine, summoners));
             return message;
         }
 
@@ -466,6 +466,12 @@ namespace craftersmine.LeagueBalancer
         {
             System.Diagnostics.Process.Start(new ProcessStartInfo("https://github.com/craftersmine/LeagueBalancer/wiki")
                 { UseShellExecute = true });
+        }
+
+        private void OnSettingsRequested(object sender, RoutedEventArgs e)
+        {
+            ApplicationSettingsWindow wnd = new ApplicationSettingsWindow();
+            wnd.ShowDialog();
         }
     }
 }

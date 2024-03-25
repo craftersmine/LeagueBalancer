@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using craftersmine.LeagueBalancer.Localization;
 using craftersmine.Riot.Api.Common;
 
 namespace craftersmine.LeagueBalancer
@@ -18,52 +19,52 @@ namespace craftersmine.LeagueBalancer
             switch (Region)
             {
                 case RiotPlatform.Russia:
-                    RegionName = "Russia";
+                    RegionName = Locale.Region_Russia;
                     break;
                 case RiotPlatform.EuropeWest:
-                    RegionName = "Europe West";
+                    RegionName = Locale.Region_EuropeWest;
                     break;
                 case RiotPlatform.EuropeNordicEast:
-                    RegionName = "Europe Nordic East";
+                    RegionName = Locale.Region_EuropeNordicEast;
                     break;
                 case RiotPlatform.NorthAmerica:
-                    RegionName = "North America";
+                    RegionName = Locale.Region_NorthAmerica;
                     break;
                 case RiotPlatform.Brazil:
-                    RegionName = "Brazil";
+                    RegionName = Locale.Region_Brazil;
                     break;
                 case RiotPlatform.Japan:
-                    RegionName = "Japan";
+                    RegionName = Locale.Region_Japan;
                     break;
                 case RiotPlatform.Korea:
-                    RegionName = "Korea";
+                    RegionName = Locale.Region_Korea;
                     break;
                 case RiotPlatform.LatinAmericaNorth:
-                    RegionName = "Latin America North";
+                    RegionName = Locale.Region_LatinAmericaNorth;
                     break;
                 case RiotPlatform.LatinAmericaSouth:
-                    RegionName = "Latin America South";
+                    RegionName = Locale.Region_LatinAmericaSouth;
                     break;
                 case RiotPlatform.Oceania:
-                    RegionName = "Oceania";
+                    RegionName = Locale.Region_Oceania;
                     break;
                 case RiotPlatform.Turkey:
-                    RegionName = "Turkey";
+                    RegionName = Locale.Region_Turkey;
                     break;
                 case RiotPlatform.Philippines:
-                    RegionName = "Philippines";
+                    RegionName = Locale.Region_Philippines;
                     break;
                 case RiotPlatform.Singapore:
-                    RegionName = "Singapore";
+                    RegionName = Locale.Region_Singapore;
                     break;
                 case RiotPlatform.Taiwan:
-                    RegionName = "Taiwan";
+                    RegionName = Locale.Region_Taiwan;
                     break;
                 case RiotPlatform.Thailand:
-                    RegionName = "Thailand";
+                    RegionName = Locale.Region_Thailand;
                     break;
                 case RiotPlatform.Vietnam:
-                    RegionName = "Vietnam";
+                    RegionName = Locale.Region_Vietnam;
                     break;
             }
         }
