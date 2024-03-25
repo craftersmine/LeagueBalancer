@@ -6,10 +6,12 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Resources;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Windows;
 using craftersmine.League.CommunityDragon;
+using craftersmine.LeagueBalancer.Localization;
 using craftersmine.Riot.Api.Account;
 using craftersmine.Riot.Api.Common;
 using craftersmine.Riot.Api.League.Mastery;
@@ -35,11 +37,21 @@ namespace craftersmine.LeagueBalancer
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(Settings.Default.Language))
+            {
+                if (CultureInfo.DefaultThreadCurrentUICulture is not null && CultureInfo.DefaultThreadCurrentUICulture.IsNeutralCulture == false)
+                    Settings.Default.Language = CultureInfo.DefaultThreadCurrentUICulture.Name;
+                else
+                    Settings.Default.Language = "en-US";
+
+                Settings.Default.Save();
+            }
+
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             DispatcherUnhandledException += App_DispatcherUnhandledException;
 
-            System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo("ru-ru");
-            CultureInfo.DefaultThreadCurrentUICulture  = new CultureInfo("ru-ru");
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo(Settings.Default.Language);
+            CultureInfo.DefaultThreadCurrentUICulture  = new CultureInfo(Settings.Default.Language);
 
             ClientSettings = RiotApiClientSettingsBuilder
                 .CreateSettingsBuilder(KeyManager.RetrieveKey())
@@ -55,15 +67,31 @@ namespace craftersmine.LeagueBalancer
             base.OnStartup(e);
         }
 
-        public IEnumerable<CultureInfo> GetAvailableCultures()
+        public static IEnumerable<CultureInfo> GetAvailableCultures()
         {
-            var programLocation = Process.GetCurrentProcess().MainModule.FileName;
-            var resourceFileName = Path.GetFileNameWithoutExtension(programLocation) + ".resources.dll";
-            var rootDir = new DirectoryInfo(Path.GetDirectoryName(programLocation));
-            return from c in CultureInfo.GetCultures(CultureTypes.AllCultures)
-                join d in rootDir.EnumerateDirectories() on c.IetfLanguageTag equals d.Name
-                where d.EnumerateFiles(resourceFileName).Any()
-                select c;
+            List<CultureInfo> result = new List<CultureInfo>();
+
+            ResourceManager rm = new ResourceManager(typeof(Locale));
+
+            CultureInfo[] cultures = CultureInfo.GetCultures(CultureTypes.AllCultures);
+            foreach (CultureInfo culture in cultures)
+            {
+                try
+                {
+                    if (!string.IsNullOrWhiteSpace(culture.Name))
+                    {
+                        ResourceSet rs = rm.GetResourceSet(culture, true, false);
+                        if (rs != null)
+                            result.Add(culture);
+                    }
+                    else continue;
+                }
+                catch (CultureNotFoundException)
+                {
+                    //NOP
+                }
+            }
+            return result;
         }
 
         public CultureInfo GetValidLeagueCultureInfo(CultureInfo cultureInfo)

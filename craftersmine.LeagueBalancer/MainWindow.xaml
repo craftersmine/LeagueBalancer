@@ -9,7 +9,7 @@
         xmlns:localization="clr-namespace:craftersmine.LeagueBalancer.Localization"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
         Title="{x:Static localization:Locale.MainWindow_Title}" x:Uid="MainWindow" Height="720" Width="1150" Style="{StaticResource LeagueMainWindowStyle}" MinHeight="720" MinWidth="1150" MaxWidth="1150" MaxHeight="720"
-        ResizeMode="CanMinimize" IsHelpButtonVisible="True" HelpRequested="OnHelpRequested">
+        ResizeMode="CanMinimize" IsHelpButtonVisible="True" HelpRequested="OnHelpRequested" IsSettingsButtonVisible="True" SettingsRequested="OnSettingsRequested">
     <leagueuicontrols:LeagueWindow.Header>
         <Grid>
             <TextBlock Text="{x:Static localization:Locale.MainWindow_Title}" Style="{StaticResource LeagueHeaderText}" VerticalAlignment="Top" Margin="24 8 0 0"/>

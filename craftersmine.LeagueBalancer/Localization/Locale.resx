@@ -139,7 +139,7 @@
     <value>Exception type:</value>
   </data>
   <data name="CrashHandlerWindow.Title" xml:space="preserve">
-    <value>Unfortunatelly, the application has crashed!</value>
+	  <value>Unfortunately, the application has crashed!</value>
   </data>
   <data name="MainWindow.Buttons.AddSummoner.ToolTip" xml:space="preserve">
     <value>Add Player</value>
@@ -184,7 +184,7 @@
     <value>Select a player region</value>
   </data>
   <data name="MainWindow.Copyright" xml:space="preserve">
-    <value>Made by craftersmine with ❤️ - App version</value>
+	  <value>Made by craftersmine with ❤️ - App version</value>
   </data>
   <data name="MainWindow.Disclaimer" xml:space="preserve">
     <value>This application was created under Riot Games' "Legal Jibber Jabber" policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.</value>
@@ -217,7 +217,7 @@
     <value>Mastery points: </value>
   </data>
   <data name="MainWindow.List.Summoners.Label.Level" xml:space="preserve">
-    <value>Lvl:</value>
+    <value>Lvl: </value>
   </data>
   <data name="MainWindow.List.Summoners.Label.Rank" xml:space="preserve">
     <value>Rank:</value>
@@ -345,5 +345,14 @@
   </data>
   <data name="Region.Vietnam" xml:space="preserve">
     <value>Vietnam</value>
+  </data>
+  <data name="SettingsWindow.Buttons.Ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="SettingsWindow.Label.Language" xml:space="preserve">
+    <value>Application Language:</value>
+  </data>
+  <data name="SettingsWindow.Title" xml:space="preserve">
+    <value>Settings</value>
   </data>
 </root>

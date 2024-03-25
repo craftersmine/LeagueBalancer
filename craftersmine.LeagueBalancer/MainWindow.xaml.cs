@@ -467,5 +467,11 @@ namespace craftersmine.LeagueBalancer
             System.Diagnostics.Process.Start(new ProcessStartInfo("https://github.com/craftersmine/LeagueBalancer/wiki")
                 { UseShellExecute = true });
         }
+
+        private void OnSettingsRequested(object sender, RoutedEventArgs e)
+        {
+            ApplicationSettingsWindow wnd = new ApplicationSettingsWindow();
+            wnd.ShowDialog();
+        }
     }
 }

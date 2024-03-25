@@ -124,7 +124,7 @@ namespace craftersmine.LeagueBalancer.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Unfortunatelly, the application has crashed!.
+        ///   Ищет локализованную строку, похожую на Unfortunately, the application has crashed!.
         /// </summary>
         public static string CrashHandlerWindow_Title {
             get {
@@ -358,7 +358,7 @@ namespace craftersmine.LeagueBalancer.Localization {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Lvl:.
+        ///   Ищет локализованную строку, похожую на Lvl: .
         /// </summary>
         public static string MainWindow_List_Summoners_Label_Level {
             get {
@@ -742,6 +742,33 @@ namespace craftersmine.LeagueBalancer.Localization {
         public static string Region_Vietnam {
             get {
                 return ResourceManager.GetString("Region.Vietnam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на OK.
+        /// </summary>
+        public static string SettingsWindow_Buttons_Ok {
+            get {
+                return ResourceManager.GetString("SettingsWindow.Buttons.Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Application Language:.
+        /// </summary>
+        public static string SettingsWindow_Label_Language {
+            get {
+                return ResourceManager.GetString("SettingsWindow.Label.Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Settings.
+        /// </summary>
+        public static string SettingsWindow_Title {
+            get {
+                return ResourceManager.GetString("SettingsWindow.Title", resourceCulture);
             }
         }
     }

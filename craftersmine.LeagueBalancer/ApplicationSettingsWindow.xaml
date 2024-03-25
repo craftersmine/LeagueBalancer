@@ -1,0 +1,50 @@
+﻿<controls:LeagueWindow x:Class="craftersmine.LeagueBalancer.ApplicationSettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:craftersmine.LeagueBalancer"
+        xmlns:controls="clr-namespace:craftersmine.Ui.League.Controls;assembly=craftersmine.Ui.League"
+        xmlns:globalization="clr-namespace:System.Globalization;assembly=System.Runtime"
+        xmlns:localization="clr-namespace:craftersmine.LeagueBalancer.Localization"
+        mc:Ignorable="d"
+        Title="{x:Static localization:Locale.SettingsWindow_Title}" Height="250" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        Style="{StaticResource LeagueMainWindowStyle}">
+    <controls:LeagueWindow.Header>
+        <TextBlock Style="{StaticResource LeagueHeaderText}" Text="{x:Static localization:Locale.SettingsWindow_Title}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="24 0 0 0"/>
+    </controls:LeagueWindow.Header>
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="{x:Static localization:Locale.SettingsWindow_Label_Language}"/>
+                <ComboBox Grid.Row="1" Margin="0 8 0 0" ItemsSource="{Binding Source={x:Static local:ApplicationSettingsWindow.Cultures}}" x:Name="SelectedLangComboBox">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate DataType="{x:Type globalization:CultureInfo}">
+                            <TextBlock>
+                                <Run Text="{Binding Path=DisplayName, Mode=OneWay}"/> - <Run Text="{Binding Path=EnglishName, Mode=OneWay}"/>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </Grid>
+        </StackPanel>
+
+        <Grid Grid.Row="1" Margin="8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="1" Content="{x:Static localization:Locale.SettingsWindow_Buttons_Ok}" Style="{StaticResource LeagueButtonThickBorder}" Height="32" Click="OnOkClick"/>
+        </Grid>
+    </Grid>
+</controls:LeagueWindow>
