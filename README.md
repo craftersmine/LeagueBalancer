@@ -13,8 +13,12 @@ League of Legends closed-game (custom game) teams balancer and champion randomiz
 Application preview:
 ![Controls Preview](https://raw.githubusercontent.com/craftersmine/LeagueBalancer/master/.github/ApplicationPreview.png)
 
-## Full guide:
-You can find full guide on how to install and use on [project wiki page](https://github.com/craftersmine/LeagueBalancer/wiki)
+## Useful links:
+If you have questions, take a look here:
+* Full installation and usage guide at [project wiki page](https://github.com/craftersmine/LeagueBalancer/wiki)
+* Discussions about application in forum format at [project discussions](https://github.com/craftersmine/LeagueBalancer/discussions)
+* Have an issue or a bug? Take a look at [project issues](https://github.com/craftersmine/LeagueBalancer/issues)
+* Wan't to contribute? Take a look at [CONTRIBUTING.md](https://github.com/craftersmine/LeagueBalancer/blob/master/CONTRIBUTING.md)
 
 ## Installation:
 * **THE APP REQUIRES .NET 6!** You can download it [here](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-6.0.20-windows-x64-installer)
