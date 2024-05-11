@@ -23,7 +23,7 @@
                 <Run Text="{x:Static localization:Locale.MainWindow_Disclaimer}"/>
             </TextBlock>
         </Grid>
-        
+
     </leagueuicontrols:LeagueWindow.Header>
     <leagueuicontrols:LeagueWindow.Background>
         <VisualBrush>
@@ -161,7 +161,7 @@
                               Tag="{x:Static local:LeagueTeamType.Blue}">
                         <ListView.ItemTemplate>
                             <DataTemplate DataType="{x:Type local:Summoner}">
-                                <Grid Width="100">
+                                <Grid Width="Auto">
                                     <Grid.RowDefinitions>
                                         <RowDefinition/>
                                         <RowDefinition/>
@@ -173,7 +173,12 @@
                                             </Ellipse.Fill>
                                         </Ellipse>
                                     </Border>
-                                    <TextBlock Grid.Row="1" HorizontalAlignment="Center" Margin="4" Text="{Binding SummonerInfo.Name}" TextWrapping="Wrap"/>
+                                    <TextBlock Grid.Row="1" HorizontalAlignment="Center" Margin="4" TextWrapping="Wrap">
+
+                                    <Run Text="{Binding RiotAccount.RiotId, Mode=OneWay}"/>
+                                    <Run Text="#"/>
+                                    <Run Text="{Binding RiotAccount.RiotIdTag, Mode=OneWay}"/>
+                                    </TextBlock>
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -195,7 +200,7 @@
                               Tag="{x:Static local:LeagueTeamType.Red}">
                         <ListView.ItemTemplate>
                             <DataTemplate DataType="{x:Type local:Summoner}">
-                                <Grid Width="100">
+                                <Grid Width="Auto">
                                     <Grid.RowDefinitions>
                                         <RowDefinition/>
                                         <RowDefinition/>
@@ -207,7 +212,12 @@
                                             </Ellipse.Fill>
                                         </Ellipse>
                                     </Border>
-                                    <TextBlock Grid.Row="1" HorizontalAlignment="Center" Margin="4" Text="{Binding SummonerInfo.Name}" TextWrapping="Wrap"/>
+                                    <TextBlock Grid.Row="1" HorizontalAlignment="Center" Margin="4" TextWrapping="Wrap">
+
+                                    <Run Text="{Binding RiotAccount.RiotId, Mode=OneWay}"/>
+                                    <Run Text="#"/>
+                                    <Run Text="{Binding RiotAccount.RiotIdTag, Mode=OneWay}"/>
+                                    </TextBlock>
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>
